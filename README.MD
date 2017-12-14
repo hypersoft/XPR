@@ -69,6 +69,54 @@ Something is missing? That sounds interesting enough. However, the case seems
 likely that; at this point, you should already have the 
 [gist](https://www.gist.github.com) on filing [issues](issues) or other 
 features you might be having/wanting.
+<hr>
+<h3>What's in a name?</h5>
+<h5>'Ol Unix C Standard Naming Conventions</h5>
+Lazy. You practically might as well be writing machine code. Off the top of your
+head, can you tell me what <code>dtoa, ftoa, fprint, printf, sprintf, malloc,
+wcstomblen</code> mean? I know what all of these crypto codes mean. It means
+learning a third-language to perform instructional speech in a second-language
+which is translated into the primary (first) language[=machine-code]. Does the term lost in translation,
+mean anything to you? You have to learn all of these languages to communicate
+effectively with the hardware. Its not clear, and it certainly is not concise.
+
+What generally happens is, most coders never see all of the logical connections,
+and thusly their code is not very straight forward. Do you have to be, a
+rocket-scientist to comprehend, that this situation is not ideal for
+instructional purposes? What is the primary goal of writing software? Performing
+computations through instructional machine interfaces. What is the primary goal
+of writing a software-language? If you did not say "human-interface-device" you
+got it wrong. Luckily you don't have to try again.
+
+<h5>Java Naming Conventions</h5>
+Java users recommend the <code>camelCaseNamingConvention</code> for Class fields
+ and methods AKA properties. Java Classes use <code>TitleCaseNamingConventions
+ </code> and packages use <code>lowercasenamingconventions</code> This is so that your code has a clear and consistent meaning that does
+  not require source Browsing for Human Cognition in relation to identifier
+  scope and context. That's a really neat trick.
+
+<h5>XPR Naming Conventions</h5>
+Nearly everything in user-land is FIRST-CLASS in XPR, which means
+<code>TitleCaseNamingConventions</code>, and Hierarchial.Context.Class.Nesting. What is not first-class? Auxilliary
+support. Getters/Setters and instance-storage-variables particularly. Things you
+generally don't need to be concerned with until you reach a FIRST-CLASS-ENDPOINT.
+Logically Input, is always greater than output, because the output doesn't 
+exist without the Input. We are not concerned with what the user is thinking,
+we are concerned with the logic of operations. Which means actually writing code
+that looks well, and performs well in terms of getting from A TO B for a particular
+goal.
+
+So, if the user doesn't comprehend what is taking place, they are not actually
+writing code in the real world. Furthermore, modern development environments
+take care of the heavy lifting these days. Clear and Concise should always be
+the goal for an API. Even if that means writing up your own naming convention,
+especially when the common-practice is not up to par with logic or computaional
+language.
+ 
+ The difference between machine
+ code and compiled code is simple in terms of communication. Its all in the
+ name game. Monikers rule the day. If you use the correct-logic, you will get
+ the correct output. Doesn't get any simpler than that.
 
 <hr>
 <small><b>The Fine Print</b></small>
