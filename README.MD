@@ -14,8 +14,10 @@ Suggested IDE: IntelliJ-IDEA 2017 or greater; with Gradle, and Netbeans Mind Map
 (plugins).
 <hr>
 
-<h5>XPR: A Logical Software Architecture</h5><br>
+<h5>XPR: A Logical Software Architecture</h5>
+
 ![Netbeans Mind Map](XPR-MAP.png "XPR Architecture")
+
 <br><br><i><small>This data may, or may not be concurrent with the 
 software within this code-bank and is subject to change with no warnings or
 notices.</small></i>
