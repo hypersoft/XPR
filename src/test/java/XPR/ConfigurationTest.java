@@ -11,7 +11,9 @@ public class ConfigurationTest {
   Configuration configuration;
 
   Configuration.Parameter activation = new Configuration.Parameter(
-    "activation", trigger -> trigger.equals("--activation"));
+    "activation", trigger -> trigger.equals("--activation")
+  );
+
   Configuration.Parameter file = new Configuration.Parameter(
     "file", trigger -> trigger.equals("--file") || trigger.equals("-f"),
     Configuration.Parameter.ValueType.MANDATORY

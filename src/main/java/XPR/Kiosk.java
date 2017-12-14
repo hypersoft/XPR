@@ -13,7 +13,7 @@ public class Kiosk<KTYPE, VTYPE> {
     QUERY
   }
 
-  public static interface ChangeTracker<KTYPE, VTYPE> {
+  public static interface Supervisor<KTYPE, VTYPE> {
     boolean allow(Permission permission, KTYPE id);
     void onAdd(Kiosk kiosk, KTYPE id, VTYPE value);
     void onRemove(Kiosk kiosk, KTYPE id, VTYPE value, boolean transfer);
@@ -22,15 +22,15 @@ public class Kiosk<KTYPE, VTYPE> {
   private HashMap<KTYPE, VTYPE> kiosk;
   private int size = 16;
   public final String type;
-  private final ChangeTracker<KTYPE, VTYPE> kioskChangeTracker;
+  private final Supervisor<KTYPE, VTYPE> kioskSupervisor;
 
   public Kiosk(String name) {this(name, null);}
 
-  public Kiosk(ChangeTracker<KTYPE, VTYPE> tracker) {
+  public Kiosk(Supervisor<KTYPE, VTYPE> tracker) {
     this("item", tracker);
   }
 
-  private static final ChangeTracker NULL_CHANGE_TRACKER = new ChangeTracker() {
+  private static final Supervisor NULL_MANAGER = new Supervisor() {
     @Override
     public boolean allow(Permission permission, Object id) { return true; }
     @Override
@@ -40,14 +40,14 @@ public class Kiosk<KTYPE, VTYPE> {
       (Kiosk kiosk, Object id, Object value, boolean transfer) {}
   };
 
-  public Kiosk(String type, ChangeTracker<KTYPE, VTYPE> kioskChangeTracker) {
+  public Kiosk(String type, Supervisor<KTYPE, VTYPE> kioskSupervisor) {
     this.type = type;
     kiosk = new HashMap<>(size);
-    this.kioskChangeTracker = kioskChangeTracker == null ? NULL_CHANGE_TRACKER : kioskChangeTracker;
+    this.kioskSupervisor = kioskSupervisor == null ? NULL_MANAGER : kioskSupervisor;
   }
 
   private <ANY> ANY halt(String type, boolean clear) {
-    if (kioskChangeTracker.allow(Permission.UNHANDLED_REQUESTS, (KTYPE)(Integer)0)) return null;
+    if (kioskSupervisor.allow(Permission.UNHANDLED_REQUESTS, (KTYPE)(Integer)0)) return null;
     if (clear) {kiosk.clear();}
     throw new Fault(this.getClass().getSimpleName(),
       new IllegalAccessException(type
@@ -57,7 +57,7 @@ public class Kiosk<KTYPE, VTYPE> {
   }
 
   final public boolean has(KTYPE key) {
-    if (kioskChangeTracker.allow(Permission.QUERY, key))
+    if (kioskSupervisor.allow(Permission.QUERY, key))
       return kiosk.containsKey(key);
     return false;
   }
@@ -77,14 +77,14 @@ public class Kiosk<KTYPE, VTYPE> {
   final public <ANY> ANY set(KTYPE id, VTYPE value) {
     VTYPE unit = kiosk.get(id);
     if (unit == null) {
-      if (kioskChangeTracker.allow(Permission.ADD_KEY, id)) {
-        if (value == null && ! kioskChangeTracker.allow(Permission.ADD_NULL_KEY, (KTYPE)id)) {
+      if (kioskSupervisor.allow(Permission.ADD_KEY, id)) {
+        if (value == null && ! kioskSupervisor.allow(Permission.ADD_NULL_KEY, (KTYPE)id)) {
           return halt("attempting to store null " + type, false);
         }
         kiosk.put(id, value);
         return (ANY) id;
       }
-    } else if (kioskChangeTracker.allow(Permission.OVERWRITE_KEY, id)) {
+    } else if (kioskSupervisor.allow(Permission.OVERWRITE_KEY, id)) {
       kiosk.put(id, value);
       return (ANY) id;
     }
@@ -93,11 +93,11 @@ public class Kiosk<KTYPE, VTYPE> {
 
   final public <ANY> ANY add(VTYPE value) {
     Integer id = newKioskID();
-    if (value == null && ! kioskChangeTracker.allow(Permission.ADD_NULL_KEY, (KTYPE)id))
+    if (value == null && ! kioskSupervisor.allow(Permission.ADD_NULL_KEY, (KTYPE)id))
       return halt("attempting to store null "+ type, false);
     kiosk.put((KTYPE) id, value);
     if (loadFactor() > 0.70) resizeStorage((int) size * 2);
-    kioskChangeTracker.onAdd(this, (KTYPE) id, value);
+    kioskSupervisor.onAdd(this, (KTYPE) id, value);
     return (ANY) id;
   }
 
@@ -109,7 +109,7 @@ public class Kiosk<KTYPE, VTYPE> {
       lessThan25PercentLoad = loadFactor() < 0.25,
       moreThan16SlotsFree = size - length > 16;
     if (lessThan25PercentLoad && moreThan16SlotsFree) { resizeStorage((int) length + 16); }
-    kioskChangeTracker.onRemove(this, id, free, false);
+    kioskSupervisor.onRemove(this, id, free, false);
   }
 
   private final void resizeStorage(int size) {
@@ -122,7 +122,7 @@ public class Kiosk<KTYPE, VTYPE> {
 
   public void clear() {
     kiosk.clear();
-    kioskChangeTracker.onRemove(null, null, null, false);
+    kioskSupervisor.onRemove(null, null, null, false);
   }
 
   final public <ANY> ANY transfer(KTYPE id) throws IllegalAccessException {
@@ -130,7 +130,7 @@ public class Kiosk<KTYPE, VTYPE> {
     if (unit == null) {
       return halt("attempting to transfer unknown "+ type, true);
     }
-    kioskChangeTracker.onRemove(this, id, unit, true);
+    kioskSupervisor.onRemove(this, id, unit, true);
     return (ANY) unit;
   }
 
