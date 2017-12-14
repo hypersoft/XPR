@@ -1,4 +1,4 @@
-Welcome to the open-contribution-java-source-code-bank for [Hypersoft Krypton](https://www.github.com/hypersoft/Krypton).
+Welcome to the world-contribution-java-source-code-bank for [Hypersoft Krypton](https://www.github.com/hypersoft/Krypton).
 
 This code-bank is for Java Coders who wish to extend the functionality of 
 Krypton, or those who wish to fork Krypton's power features in their own 
@@ -45,23 +45,23 @@ All useful contributions are welcome. "Useful" means any technology, or comments
 As far as contributions go, what this project really needs are code testers, 
 platform-feature-compatibility-pull-requessts and people who like to whine, 
 protest and complain about things <b>not working</b> in a way perceived to be 
-logical. If you find that something is not working correctly with this software,
- and you cannot correct the issue on your own, please feel free to 
- [file an issue](issues) on the problem you are having.
+logical (introspective reflections). If you find that something is not working,
+and you cannot correct the issue on your own, please feel free to 
+[file an issue](issues) on the problem you are having.
 
 On the other hand, if you can correct a software issue, we would love to see 
-your pull requests under the terms of share-and-share-alike (open-contribution for
-open-contribution). If you don't comprehend the concept of pushing and pulling to 
+your pull requests under the terms of share-and-share-alike (world-contribution for
+world-contribution). If you don't comprehend the concept of pushing and pulling to 
 and from online code-bases, you can always use good 'ol markdown syntax in 
 conjunction with your favorite [Gist](https://www.gist.github.com) or 
-[Pastebin](https://www.pastebin.com) and our [issues](issues) page, to submit 
+[Pastebin](https://www.pastebin.com) and our [issues](issues) site, to submit 
 your features, and fixes like a no-(non-sense/hassle)-coding-guru would.
 
-Do you believe you have found a copyright patent or licensing issue? You should 
-go to the issues page and post a comment under the 
-[Licensing](https://github.com/hypersoft/XPR/issues/1) issue.
+Do you believe you have found a copyright or licensing issue concerning this
+software? If you have You should go to the issues page and post a comment int 
+the [Licensing](https://github.com/hypersoft/XPR/issues/1) issue.
 
-Have a suggestion? Why wait? Go to the 
+Perhaps you have a suggestion? Why wait? Go to the 
 [Suggestions](https://github.com/hypersoft/XPR/issues/1) issue and post a 
 suggestion.
 
@@ -84,4 +84,6 @@ direction. [100%-FACT]</small>
 <small>This software-code-bank is (C) Hypersoft-Systems: U.-S.-A.; ~December: 
 2017 THROUGH THE NOW-TIME WITH THE TERMS AND CONDITIONS IN THE WRITINGS OF THE 
 DOCUMENTS. FOR THE TAKING AND PUBLISHING OF THE CODE-SOURCES WITHIN THE
-PUBLIC-DOMAIN IS WITH THE COPY-RIGHTS THROUGH THE COPY-TERMS.</small>
+PUBLIC-DOMAIN IS WITH THE COPY-RIGHTS THROUGH THESE DOCUMENTATION-COPY-CLAIMS
+OF THIS WORLD-CONTRIBUTION-JAVA-SOURCE-CODE-BANK.
+</small>
