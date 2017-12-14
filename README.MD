@@ -110,8 +110,8 @@ So, if the user doesn't comprehend what is taking place, they are not actually
 writing code in the real world. Furthermore, modern development environments
 take care of the heavy lifting these days. Clear and Concise should always be
 the goal for an API. Even if that means writing up your own naming convention,
-especially when the common-practice is not up to par with logic or computaional
-language.
+especially when the common-practice is not up to par with logic (computational
+language).
  
  The difference between machine
  code and compiled code is simple in terms of communication. Its all in the
