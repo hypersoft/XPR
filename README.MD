@@ -14,14 +14,14 @@ Suggested IDE: IntelliJ-IDEA 2017 or greater; with Gradle, and Netbeans Mind Map
 (plugins).
 <hr>
 
-#####XPR: A Logical Software Architecture<br>
+<h5>XPR: A Logical Software Architecture</h5><br>
 ![Netbeans Mind Map](XPR-MAP.png "XPR Architecture")
 <br><br><i><small>This data may, or may not be concurrent with the 
 software within this code-bank and is subject to change with no warnings or
 notices.</small></i>
 <hr>
 
-#####Notice
+<h5>Notice</h5>
 
 Krypton is not currently using this code-bank.
 The code-bank that Krypton currently uses is being outsourced to this code-bank.
@@ -34,7 +34,7 @@ you use XPR in the context it was made for.
 
 <hr>
 
-#####Contributing
+<h5>Contributing</h5>
 
 All useful contributions are welcome. "Useful" means any technology, or comments
  [thoughts], which meet the goals of XPR as laid out in the XPR Logical 
