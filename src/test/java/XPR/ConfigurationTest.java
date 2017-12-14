@@ -38,6 +38,7 @@ public class ConfigurationTest {
             return true;
           } else if (parameter.equals(file)) {
             database.put(path, value);
+            return true;
           }
           return false;
         }
@@ -60,7 +61,7 @@ public class ConfigurationTest {
         }
       }
     );
-    assertEquals(1, configuration.configure("--activation", "--file", "/dev/stdin"));
+    assertEquals(3, configuration.configure("--activation", "--file", "/dev/stdin"));
   }
 
   @Test
@@ -92,6 +93,7 @@ public class ConfigurationTest {
     try {
       configuration.configure("--file", "--activation", "/dev/stdin");
     } catch (Fault f) {
+      f.printStackTrace();
       assertEquals(0, f.getFaultCode());
     }
   }
