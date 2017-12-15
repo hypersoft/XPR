@@ -58,9 +58,10 @@ public class ConfigurationTest {
         }
 
         @Override
-        public String getResourceFor(String path) {
+        public String locateHelpFor(String path) {
           return null;
         }
+
       }
     );
     assertEquals(3, configuration.configure("--activation", "--file", "/dev/stdin"));

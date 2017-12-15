@@ -94,7 +94,7 @@ public class Configuration {
 
   }
 
-  public static abstract class Director implements Supervisor, Plus.ResourcePathLoader {
+  public static abstract class Director implements Supervisor, Plus.Help.Locator {
     protected boolean serializable() {
       return false;
     }
@@ -257,7 +257,7 @@ public class Configuration {
     return (ANY) director.get(path);
   }
 
-  @NotNull final public String getHelp(String path) {return director.getResourceFor(path);}
+  @NotNull final public String getHelp(String path) {return director.locateHelpFor(path);}
 
   final public boolean serializable() {
     return director.serializable();
