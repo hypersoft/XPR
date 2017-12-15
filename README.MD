@@ -147,7 +147,7 @@ all clinations of time are relative. Furthermore: Aenglish because English
 starts with a vowel, doesn't continue with a vowel, and the third letter is 
 not a vowel.
 
-It also helps to tell you that you can construct your words however you want if you give the correct meaning for the (incorrect = wrong) term. The Human Mind, also has its own term mapping features. This commentary has been about correctly using those features in the context of computational [high-order] logic language [extensions] for software (development = coding).
+It also helps to tell you that you can construct your words however you want if you give the correct meaning for the (incorrect = wrong) term. The Human Mind, also has its own term mapping features. This commentary has been about correctly operating those features in the context of computational [high-order] logic language [extensions] for software (development = coding).
 <hr>
 <small><b>The Fine Print</b></small>
 <br><br>
