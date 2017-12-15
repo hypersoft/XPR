@@ -129,7 +129,7 @@ get any simpler than that last paragraph.
 Generally in logical Aenglish word construction <code>/^(pr[aeiou]|in|un|de|re)*$/i</code> are void constructions because the
 "prefix" is voiding the fact of the following word with the negative modification of the
 word. Modification logically means not the fact. Some words start with void-fixes like (refuse; with the meaning of garbage or trash, rather than "decline"(which means to modify a (offer = clination) negatively), but those words have no fixation. Here
-is a quick code sample you should study. <code>Input</code> = <code>InPut</code> the correct word form and software-construction is <code>SourceData</code>.
+is a quick code sample you should study. <code>Input</code> = <code>InPut</code> the correct word form and software-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
 For any combination of words, the formal-correct-spelling is with the hyphenation of the words, thusly forming a single-compound-word = <code>SingleCompoundWord</code>.
 
 Words like "com" are commonly considerable as "prefix words", but com doesn't mean modification, com means "with", Such as in Community, Computer, Compound. Words which subtract from the meaning must possess
