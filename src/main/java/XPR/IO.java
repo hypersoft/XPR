@@ -70,7 +70,7 @@ public class IO {
 
       private Type() {}
 
-      public abstract static class ByteArray extends Codec {
+      public abstract static class Buffer extends Codec {
         static final public Transformation FORWARD = Transformation.INPUT;
         static final public Transformation BACKWARD = Transformation.OUTPUT;
         @Override

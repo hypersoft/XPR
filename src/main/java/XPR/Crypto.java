@@ -14,7 +14,7 @@ final public class Crypto {
 
     private Authentication(){}
 
-    public static final IO.Codec.Type.ByteArray MD5Hash = new IO.Codec.Type.ByteArray() {
+    public static final IO.Codec.Type.Buffer MD5Hash = new IO.Codec.Type.Buffer() {
 
       private final static String cipher = "MD5";
       private final static String name = cipher + "Hash";
@@ -51,7 +51,7 @@ final public class Crypto {
 
   final public static class Basic {
     private Basic(){};
-    public static final IO.Codec.Type.ByteArray Base64 = new IO.Codec.Type.ByteArray() {
+    public static final IO.Codec.Type.Buffer Base64 = new IO.Codec.Type.Buffer() {
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
         byte[] source = valueOf(data);
@@ -73,7 +73,7 @@ final public class Crypto {
       }
     };
 
-    public static final IO.Codec.Type.ByteArray Base16 = new IO.Codec.Type.ByteArray() {
+    public static final IO.Codec.Type.Buffer Base16 = new IO.Codec.Type.Buffer() {
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
         byte[] source = valueOf(data);
