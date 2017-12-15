@@ -144,7 +144,7 @@ Correct sentence grammar construction, time-modification-words, and fact-modific
 In our theorhetical software writing cause, we are using a 
 fact-calculation-contrivance (that is to say: computer and software coding tools) 
 which has its own sentence grammars within this domain of code-writing, and 
-all clinations of time are relative. Furthermore: Aenglish because English 
+all (notions = clinations = suggestions) of time are relative. Furthermore: Aenglish because English 
 starts with a vowel, doesn't continue with a vowel, and the third letter is 
 not a vowel.
 
