@@ -2,11 +2,22 @@ package XPR;
 
 import com.sun.istack.internal.NotNull;
 
+import java.util.Set;
+
 public class Plus {
   
   private Plus(){};
 
-  public static <ANY> ANY valueOf(Object v){return (ANY)v;}
+  // java language patch for the array
+  static public <ANY> ANY[] getDimensionalValueOf(Object data) {
+    if (data instanceof Set) {
+      return valueOf(((Set)data).toArray());
+    }
+    throw new Fault("no solution for coercion of dimensional data type", new UnsupportedOperationException());
+  }
+  public static <ANY> ANY valueOf(Object value){
+    return (ANY) value;
+  }
 
   public final static class Help { private Help(){}
 
