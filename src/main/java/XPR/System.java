@@ -7,44 +7,48 @@ import static XPR.Plus.valueOf;
 
 public class System { private System(){}
 
+  static private HashMap<String, String> copyVirons() {
+    Map<String, String> source = java.lang.System.getenv();
+    HashMap<String, String> localMap;
+    localMap = new HashMap<>(source.size() + 16);
+    localMap.putAll(source);
+    return localMap;
+  }
+
   public static class Viron{ private Viron(){};
 
-   private HashMap<String, String> virons = loadVirons();
+   static private HashMap<String, String> virons = copyVirons();
 
-   private HashMap loadVirons() {
-     Map env = java.lang.System.getenv();
-     HashMap<String, String> localMap;
-     localMap = new HashMap<>(env.size() + 32);
-     localMap.putAll(env);
-     return localMap;
-   }
-
-   public Map<String, String> clone() {
+    static public Map<String, String> readTable() {
      return valueOf(virons.clone());
    }
 
-   public String get(String key) {
+   static public void writeTable(Map<String, String> table) {
+     virons.putAll(table);
+   }
+
+   static public String get(String key) {
      return virons.get(key);
    }
 
-   public void set(String key, String value) {
+   static public void set(String key, String value) {
      virons.put(key, value);
    }
 
-   public String delete(String key) {
+   static public String clearKey(String key) {
      return virons.remove(key);
    }
 
-   public String[] keys() {
+   static public void clearKeys() {
+     virons.clear();
+   }
+
+   static public String[] getKeys() {
      return valueOf(virons.keySet().toArray());
    }
 
-   public void reset() {
-     virons = loadVirons();
-   }
-
-   public void copy(Map<String, String> table) {
-     virons.putAll(table);
+   static public void loadSystemTable() {
+     virons = copyVirons();
    }
 
   }
