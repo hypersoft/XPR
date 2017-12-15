@@ -143,7 +143,8 @@ the beginning of a word, If the root-word is longer than three letters without s
         (b) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break. [such as in E-nunciation]
         
     [vow: means to pledge; el: means contract; and a contract must be a known fact]
-    [these word constructions violate the (syllable/consonant)-grammar-contracts[=word-meanings of syllable and consonant]]
+    [these word constructions violate the (syllable/consonant)-grammar-contracts[=word-meanings of syllable and consonant];]
+    [which violates the value of the conveyance = (word being constructed): meaning ambiguous = without-certainty = lacking-clarity: mathematically-random-data]
     
 
 Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adjectives, pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
