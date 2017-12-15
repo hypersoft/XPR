@@ -16,4 +16,22 @@ public class Plus {
 
   }
 
+  // java language patch for the e-quals
+  public final static boolean sameClass(Class a, Class... b) {
+    for (Class c: b) {
+      if (a.equals(c)) return true;
+    }
+    return false;
+  }
+
+  // java language patch for the array
+  public final static boolean dimensionalValue(Object data) {
+    return data.getClass().isArray();
+  }
+
+  // java language patch for the array
+  public final static boolean dimensionalValueClass(Class data) {
+    return data.isArray();
+  }
+
 }

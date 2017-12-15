@@ -24,12 +24,12 @@ final public class Crypto {
 
       @Override
       public boolean canTransform(Transformation type, Object data) {
-        if (type.equals(BACKWARD)) return false;
+        if (type.equals(Type.BACKWARD)) return false;
         return super.canTransform(type, data);
       }
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
-        if (direction.equals(BACKWARD)) throw new Fault(
+        if (direction.equals(Type.BACKWARD)) throw new Fault(
           new UnsupportedEncodingException(backwardTransformationFaultMessage)
         );
         MessageDigest md;
