@@ -118,14 +118,13 @@ communication. Its all in the name game. Monikers rule the day. If you use the
 correct-logic, you will get the correct output, but you won't always have the
 correct logic if you write code with (incorrect = not: correct) language. 
 Correct language [in software coding] means your variable-lables are written with
-correct word construction with the vowels and syllables in the beginning of
-every word.
+correct-word-construction.
 
 "What is in a name" [in terms of software-coding]; doesn't
 get any simpler than that last paragraph.
 <br><br>
 <cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
-Generally in logical Aenglish word construction <code>/[Pp]r*|in|un|de|re/</code> are void constructions because the
+Generally in logical Aenglish word construction <code>/^(pr[aeiou]|in|un|de|re)*$/i</code> are void constructions because the
 "prefix" is voiding the fact of the following word with the negative modification of the
 word. Modification logically means not the fact. Some words start with void-fixes like (refuse; with the meaning of garbage or trash, rather than "decline"(which means to modify a (offer = clination) negatively), but those words have no fixation. Here
 is a quick code sample you should study. <code>Input</code> <code>InPut</code>.
