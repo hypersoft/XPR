@@ -56,7 +56,7 @@ final public class Crypto {
       public <ANY> ANY transform(Transformation direction, Object data) {
         byte[] source = valueOf(data);
         switch (direction) {
-          case INPUT: { // FORWARD / ENCODE
+          case SOURCE: { // FORWARD / ENCODE
             return valueOf(Ciphers.Base64.encode(source, Ciphers.Base64.URL_SAFE));
           }
           case OUTPUT: {// BACKWARD / DECODE
@@ -78,7 +78,7 @@ final public class Crypto {
       public <ANY> ANY transform(Transformation direction, Object data) {
         byte[] source = valueOf(data);
         switch (direction) {
-          case INPUT: { // FORWARD / ENCODE
+          case SOURCE: { // FORWARD / ENCODE
             return valueOf(Ciphers.Base16.encodeToString(source));
           }
           case OUTPUT: {// BACKWARD / DECODE

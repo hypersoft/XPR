@@ -63,7 +63,7 @@ public class IO {
      * Codec Direction Specifiers
      */
     public static enum Transformation {
-      INPUT, OUTPUT
+      SOURCE, OUTPUT
     }
 
     public static class Type {
@@ -71,7 +71,7 @@ public class IO {
       private Type() {}
 
       public abstract static class Buffer extends Codec {
-        static final public Transformation FORWARD = Transformation.INPUT;
+        static final public Transformation FORWARD = Transformation.SOURCE;
         static final public Transformation BACKWARD = Transformation.OUTPUT;
         @Override
         public boolean canTransform(Transformation type, @NotNull Object data) {
