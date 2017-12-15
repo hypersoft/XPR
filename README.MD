@@ -137,7 +137,7 @@ the beginning of a word, If the root-word is longer than three letters without s
  
   (1) if the word in question starts with a vowel, then the third letter of the root-word must also be a vowel if the second-letter of the root-word is not a vowel.
   
-  (2) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break such as in E-nunciation or U-nit.
+  (2) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break such as in E-nunciation.
 
 Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adjectives, pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
 In our theorhetical software software writing cause, we are using a 
