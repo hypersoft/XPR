@@ -6,10 +6,11 @@ package XPR;
 
   to err is human, so is an error [or = suffix]
   exception = fault [except = "all but for CAUSE[=ion = contract = false; no-contract = fact]", fault = conditional-break]
-  object = value, variant, compound or data
+  object = value, variant, compound or data[-structure]
   array = type+s (as in bytes), elements, list (is plural), element-list (plural-container) or basic-list (generic, or simple: elementary) but not List (a compound-data-type because java claims the type)
   explicit = certain
   extends = morphs
+  property = $[object], structure-member, compound-element, [logic: value of the/this]...
   implements = modeling (the noun) or modelings (the plural noun)
   inherits = shares (the value of THING; there is no "inherits-from" but there is a shares-with in coding)
   implement = forge [a thing or construct]
