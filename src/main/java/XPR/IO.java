@@ -80,7 +80,7 @@ public class IO {
         public boolean canTransform(Transformation type, @NotNull Object data) {
           Class dataType = data.getClass();
           if (! Plus.sameClass(dataType, byte.class) ||
-              ! Plus.dimensionalValueClass(dataType)) return false;
+              ! Plus.basicListClass(dataType)) return false;
           return true;
         }
       }
