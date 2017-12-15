@@ -4,15 +4,32 @@ package XPR;
 
   XPR Language:
 
+  to err is human, so is an error [or = suffix]
+  exception = fault [except = "all but for CAUSE[=ion = contract = false; no-contract = fact]", fault = conditional-break]
   object = value, variant, compound or data
-  array = elements, list, element-list or basic-list but not List (because java claims the type)
+  array = type+s (as in bytes), elements, list (is plural), element-list (plural-container) or basic-list (generic, or simple: elementary) but not List (a compound-data-type because java claims the type)
   explicit = certain
-  extends = mocks (the verb) or mocking (the noun)
-  implements = models (the verb) or modeling (the noun) or modelings (the plural noun)
-  implement = model (the verb) or modeling (the noun)
-  enumeration = codex [there are two-ways to say: e-numeration (1) en-umeration (2); en = french]
+  extends = morphs
+  implements = modeling (the noun) or modelings (the plural noun)
+  inherits = shares (the value of THING; there is no "inherits-from" but there is a shares-with in coding)
+  implement = forge [a thing or construct]
+  enumeration = codex
+    [there are two-ways to say: e-numeration = (1) and en-umeration = (2);]
+    [en = french: wrong-language;]
+    [the correct translation word for "en" is "in": in+word = not-word = wrong-logic]
+    [co = sharing, dex = table; correct-logic]
+  interface = portifice (standard-contrivance-portal/gateway)
 
   This codex = translation-table is not to be considered complete.
+
+  It is not feasible to change all of the words in the java language. So,
+  this table is for your knowledge of the facts. We know the facts, and can
+  use any alias we like, but coding with the knowledge is what makes the
+  knowledge work.
+
+  Verbs as nouns are not considered correct-grammar, but will work for correct
+  code due to the difference in method = verb/noun. Every verb has a noun = name,
+  but no nouns are verbs in standard [A]english speech.
 
 */
 
@@ -40,7 +57,7 @@ public class Plus {
 
 
   /**
-   * For casting the data value to a known-type.
+   * For casting the value to a known-type.
    * @param data a java value
    * @param <ANY> Automatic Type Cast.
    * @return The value being written to a variable of a certain type.
