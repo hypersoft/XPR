@@ -136,9 +136,15 @@ a negative value, such as in delete, recycle, or unlink; all of which mean perfo
 In addition to void fixes there are void: (Vowel and Syllable)-compositions for 
 the beginning of a word, If the root-word is longer than three letters without suffixation:
  
-  (1) if the word in question starts with a vowel, then the third letter of the root-word must also be a vowel if the second-letter of the root-word is not a vowel.
+    (1) if the word in question starts with a vowel,
+       
+        (a) the third letter of the root-word must also be a vowel if the second-letter of the root-word is not a vowel;
   
-  (2) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break such as in E-nunciation.
+        (b) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break. [such as in E-nunciation]
+        
+    [vow: means to pledge; el: means contract; and a contract must be a known fact]
+    [these word constructions violate the (syllable/consonant)-grammar-contracts[=word-meanings of syllable and consonant]]
+    
 
 Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adjectives, pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
 In our theorhetical software writing cause, we are using a 
