@@ -108,6 +108,7 @@ we are concerned with the logic of operations. Which means actually writing code
 that looks well, and performs well in terms of getting from A TO B for a particular
 goal.
 
+
 Clear and Concise should always be the goal for an API. Even if that means
 writing up your own naming convention, [in this case] particularly when the 
 common-practice is not up to par with logic (computational language).
