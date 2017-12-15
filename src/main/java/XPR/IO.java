@@ -4,6 +4,8 @@ import com.sun.istack.internal.NotNull;
 
 import java.nio.charset.Charset;
 
+import static XPR.Plus.valueOf;
+
 public class IO {
 
   public static final String getCharSetName() {
@@ -26,7 +28,7 @@ public class IO {
    * A two-way-data-transformation-gate, with validation function.
    * @author pc.wiz.tt@gmail.com
    */
-  public interface Codec {
+  public abstract static class Codec {
     /**
      * <p></p>The transformation validation method.</p>
      *
@@ -36,18 +38,8 @@ public class IO {
      * @param data The data being supplied for a transformation.
      * @return value will be true if this transformer can successfully handle the requested operation.
      */
-    default boolean canTransform(Transformation type, Object data) {
+    public boolean canTransform(Transformation type, Object data) {
       return true;
-    }
-
-    /**
-     * A convenience function which casts the data to the type being sought for assignment.
-     * @param data The data which has been transformed.
-     * @param <ANY> Automatic Type Cast
-     * @return the data parameter
-     */
-    default <ANY> ANY value(Object data) {
-      return (ANY) data;
     }
 
     /**
@@ -58,35 +50,37 @@ public class IO {
      *
      * @param direction The direction sought for this transformation.
      * @param data The data being supplied for this transformation.
-     * @param <ANY> Automatic Type Cast
+     * @param <ANY> Automatic Type Cast.
      * @return the value of the transformation performed.
      */
-    default <ANY> ANY transform(Transformation direction, Object data) {
-      return (ANY) data;
+    public <ANY> ANY transform(Transformation direction, Object data) {
+      return valueOf(data);
     }
-    String getName();
+
+    public abstract String getName();
 
     /**
      * Codec Direction Specifiers
      */
-    enum Transformation {
+    public static enum Transformation {
       INPUT, OUTPUT
+    }
+
+    public static class Type {
+
+      private Type() {}
+
+      public abstract static class ByteArray extends Codec {
+        static final public Transformation FORWARD = Transformation.INPUT;
+        static final public Transformation BACKWARD = Transformation.OUTPUT;
+        @Override
+        public boolean canTransform(Transformation type, @NotNull Object data) {
+          Class c = data.getClass();
+          if (! c.equals(byte.class) ||! c.isArray()) return false;
+          return true;
+        }
+      }
     }
   }
 
-  public abstract static class ByteArrayCodec implements Codec
-  {
-    static final public Transformation FORWARD = Transformation.INPUT;
-    static final public Transformation BACKWARD = Transformation.OUTPUT;
-    @Override
-    final public <ANY> ANY value(Object data) {
-      return null;
-    }
-    @Override
-    public boolean canTransform(Transformation type, @NotNull Object data) {
-      Class c = data.getClass();
-      if (! c.equals(byte.class) ||! c.isArray()) return false;
-      return true;
-    }
-  }
 }

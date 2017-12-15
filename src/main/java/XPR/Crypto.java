@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.lang.System;
 import java.security.MessageDigest;
 
+import static XPR.Plus.valueOf;
+
 final public class Crypto {
 
   private Crypto(){}
@@ -12,7 +14,7 @@ final public class Crypto {
 
     private Authentication(){}
 
-    public static final IO.ByteArrayCodec MD5Hash = new IO.ByteArrayCodec() {
+    public static final IO.Codec.Type.ByteArray MD5Hash = new IO.Codec.Type.ByteArray() {
 
       private final static String cipher = "MD5";
       private final static String name = cipher + "Hash";
@@ -31,10 +33,10 @@ final public class Crypto {
           new UnsupportedEncodingException(backwardTransformationFaultMessage)
         );
         MessageDigest md;
-        byte[] bytes = value(data);
+        byte[] bytes = valueOf(data);
         try {
           md = MessageDigest.getInstance(cipher);
-          return value(md.digest(bytes));
+          return valueOf(md.digest(bytes));
         } catch (Exception e) {
           throw new RuntimeException(e);
         }
@@ -49,16 +51,16 @@ final public class Crypto {
 
   final public static class Basic {
     private Basic(){};
-    public static final IO.ByteArrayCodec Base64 = new IO.ByteArrayCodec() {
+    public static final IO.Codec.Type.ByteArray Base64 = new IO.Codec.Type.ByteArray() {
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
-        byte[] source = value(data);
+        byte[] source = valueOf(data);
         switch (direction) {
           case INPUT: { // FORWARD / ENCODE
-            return value(Ciphers.Base64.encode(source, Ciphers.Base64.URL_SAFE));
+            return valueOf(Ciphers.Base64.encode(source, Ciphers.Base64.URL_SAFE));
           }
           case OUTPUT: {// BACKWARD / DECODE
-            return value(Ciphers.Base64.decode(source, Ciphers.Base64.URL_SAFE));
+            return valueOf(Ciphers.Base64.decode(source, Ciphers.Base64.URL_SAFE));
           }
           default: throw new Fault("basic crypto codec "+getName()
             +" is not able to perform the data transformation in the direction"
@@ -71,16 +73,16 @@ final public class Crypto {
       }
     };
 
-    public static final IO.ByteArrayCodec Base16 = new IO.ByteArrayCodec() {
+    public static final IO.Codec.Type.ByteArray Base16 = new IO.Codec.Type.ByteArray() {
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
-        byte[] source = value(data);
+        byte[] source = valueOf(data);
         switch (direction) {
           case INPUT: { // FORWARD / ENCODE
-            return value(Ciphers.Base16.encodeToString(source));
+            return valueOf(Ciphers.Base16.encodeToString(source));
           }
           case OUTPUT: {// BACKWARD / DECODE
-            return value(Ciphers.Base16.decodeFromString(source));
+            return valueOf(Ciphers.Base16.decodeFromString(source));
           }
           default: throw new Fault("basic crypto codec "+getName()
             +" is not able to perform the data transformation in the direction"

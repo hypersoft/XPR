@@ -96,28 +96,58 @@ Java users recommend the <code>camelCaseNamingConvention</code> for Class fields
   scope and context. That's a really neat trick.
 
 <h5>XPR Naming Conventions</h5>
-Nearly everything in user-land is FIRST-CLASS in XPR, which means
-<code>TitleCaseNamingConventions</code>, and Hierarchial.Context.Class.Nesting. What is not first-class? Auxilliary
-support. Getters/Setters and instance-storage-variables particularly. Things you
-generally don't need to be concerned with until you reach a FIRST-CLASS-ENDPOINT.
+Nearly everything in user-land is first-class in XPR, which means
+<code>TitleCaseNamingConventions</code>, and <code>Hierarchial.Context.Class.Nesting</code>. What is not first-class? Auxilliary
+support. (Primitive = Simple = Portable) Constants are <code>JUMBO_CASE</code>. Getters/Setters and instance-storage-variables are <code>camelCase</code>.
+
+<small><cite>commentary</cite></small><br>
 Logically Input, is always greater than output, because the output doesn't 
 exist without the Input. We are not concerned with what the user is thinking,
 we are concerned with the logic of operations. Which means actually writing code
 that looks well, and performs well in terms of getting from A TO B for a particular
 goal.
 
-So, if the user doesn't comprehend what is taking place, they are not actually
-writing code in the real world. Furthermore, modern development environments
-take care of the heavy lifting these days. Clear and Concise should always be
-the goal for an API. Even if that means writing up your own naming convention,
-especially when the common-practice is not up to par with logic (computational
-language).
+Clear and Concise should always be the goal for an API. Even if that means
+writing up your own naming convention, [in this case] particularly when the 
+common-practice is not up to par with logic (computational language).
  
- The difference between machine
- code and compiled code is simple in terms of communication. Its all in the
- name game. Monikers rule the day. If you use the correct-logic, you will get
- the correct output. Doesn't get any simpler than that.
+The difference between machine code and compiled code is simple in terms of
+communication. Its all in the name game. Monikers rule the day. If you use the
+correct-logic, you will get the correct output, but you won't always have the
+correct logic if you write code with (incorrect = not: correct) language. 
+Correct language [in software coding] means your variable-lables are written with
+correct word construction with the vowels and syllables in the beginning of
+every word.
 
+"What is in a name" [in terms of software-coding]; doesn't
+get any simpler than that last paragraph.
+
+<cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
+Generally in logical Aenglish word construction <code>/[Pp]r*|in|un|de|re/</code> are void constructions because the
+"prefix" is voiding the fact of the following word with the negative modification of the
+word. Modification logically means not the fact. Some words start with void-fixes like (refuse; with the meaning of garbage or trash, rather than "decline"(which means to modify a (offer = clination) negatively), but those words have no fixation. Here
+is a quick code sample you should study. <code>Input</code> <code>InPut</code>.
+For any combination of words, the formal-correct-spelling is with the hyphenation of the words, thusly forming a single-compound-word = <code>SingleCompoundWord</code>.
+
+Words like "com" are commonly considerable as "prefix words", but com doesn't mean modification, com means "with", Such as in Community, Computer, Compound. Words which subtract from the meaning must possess
+a negative value, such as in delete, recycle, or unlink; all of which mean perform file (refuse = trashing) methods.
+
+In addition to void fixes there are void: (Vowel and Syllable)-compositions for 
+the beginning of a word, If the root-word is longer than three letters without suffixation:
+ 
+  (1) if the word in question starts with a vowel, then the third letter of the root-word must also be a vowel if the second-letter of the root-word is not a vowel.
+  
+  (2) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break such as in E-nunciation or U-nit.
+
+Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adjectives, pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
+In our theorhetical software software writing cause, we are using a 
+fact-calculation-contrivance (that is to say: computer and software coding tools) 
+which has its own sentence grammars within this domain of code-writing, and 
+all clinations of time are relative. Furthermore: Aenglish because English 
+starts with a vowel, doesn't continue with a vowel, and the third letter is 
+not a vowel.
+
+It also helps to tell you that you can construct your words however you want if you give the correct meaning for the (incorrect = wrong) term. The Human Mind, also has its own term mapping features. This commentary has been about correctly using those features in the context of computational [high-order] logic language [extensions] for software (development = coding).
 <hr>
 <small><b>The Fine Print</b></small>
 <br><br>
