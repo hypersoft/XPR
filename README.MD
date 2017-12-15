@@ -1,11 +1,11 @@
 Welcome to the world-contribution-java-source-code-bank for [Hypersoft Krypton](https://www.github.com/hypersoft/Krypton).
 
-This code-bank is for Java Coders who wish to extend the functionality of 
+This code-bank is for Java Coders who wish to extend = (study and/or modify) the platform functionality of 
 Krypton, or those who wish to fork Krypton's power features in their own 
 java-software-code-works. Please see [LICENSE](LICENSE) for data on any 
 permissions you may need for your public-code-works.
 
-Development Platform:
+Coding Platform:
 
  * Gradle
  * Netbeans Mind Map
@@ -14,7 +14,7 @@ Suggested IDE: IntelliJ-IDEA 2017 or greater; with Gradle, and Netbeans Mind Map
 (plugins).
 <hr>
 
-<h5>XPR: A Logical Software Architecture</h5>
+<h5>XPR: A Logical Software Architecture Map</h5>
 
 ![Netbeans Mind Map](XPR-MAP.png "XPR Architecture")
 
@@ -28,10 +28,10 @@ notices. [architecture = not a real schematic]</small></i>
 Krypton is not currently using this code-bank.
 The code-bank that Krypton currently uses is being outsourced to this code-bank.
 
-You should feel free to hack-on and rip-from this code however you like, except 
-that you should not plagiarize any code you have been given. Which means claim 
-someone else's work as your own original work. In general, it is okay to take 
-parts and pieces you need, however that's not really something you need to do if
+You should feel free to hack-on and rip-from this code however you like, but 
+you should not plagiarize any code you have been given. Which means claim 
+someone's work as your own original work. In general, you may take 
+parts and pieces you need [everything in the cosmos is constructed of similar parts], however that's not really something you need to do if
 you use XPR in the context it was made for.
 
 <hr>
@@ -42,10 +42,10 @@ All useful contributions are welcome. "Useful" means any technology, or comments
  [thoughts], which meet the goals of XPR as laid out in the XPR Logical 
  Architecture Map.
 
-As far as contributions go, what this project really needs are code testers, 
-platform-feature-compatibility-pull-requessts and people who like to whine, 
-protest and complain about things <b>not working</b> in a way perceived to be 
-logical (introspective reflections). If you find that something is not working,
+As far as contributions go, what this code-bank really needs are code testers, 
+platform-feature-compatibility-pull-(requests = direct-code-bank-patches) and people who like to whine, 
+"protest" and complain about things <b>not working</b> in a way perceived to be 
+logical (introspective reflections; simple-analytical-hypothesis resulting in random-consequence = "unexpected output"). If you find that something is not working,
 and you cannot correct the issue on your own, please feel free to 
 [file an issue](issues) on the problem you are having.
 
