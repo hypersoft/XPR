@@ -99,7 +99,8 @@ Java users recommend the <code>camelCaseNamingConvention</code> for Class fields
 Nearly everything in user-land is first-class in XPR, which means
 <code>TitleCaseNamingConventions</code>, and <code>Hierarchial.Context.Class.Nesting</code>. What is not first-class? Auxilliary
 support. (Primitive = Simple = Portable) Constants are <code>JUMBO_CASE</code>. Getters/Setters and instance-storage-variables are <code>camelCase</code>.
-
+<br>
+<br>
 <small><cite>commentary</cite></small><br>
 Logically Input, is always greater than output, because the output doesn't 
 exist without the Input. We are not concerned with what the user is thinking,
@@ -121,7 +122,7 @@ every word.
 
 "What is in a name" [in terms of software-coding]; doesn't
 get any simpler than that last paragraph.
-
+<br><br>
 <cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
 Generally in logical Aenglish word construction <code>/[Pp]r*|in|un|de|re/</code> are void constructions because the
 "prefix" is voiding the fact of the following word with the negative modification of the
