@@ -1,7 +1,7 @@
 package XPR;
 
 /**
- * A runtime exception class featuring error code support.
+ * A runtime fault class featuring error code support.
  */
 public class Fault extends RuntimeException {
 

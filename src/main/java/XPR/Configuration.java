@@ -92,19 +92,24 @@ public class Configuration {
 
   }
 
-  public static abstract class Director implements Supervisor, Plus.Help.Locator {
-    protected boolean serializable() {
-      return false;
-    }
-    @NotNull protected JSON.Type.Variant onSave() {
-      throw new Fault("this configuration does not support serialization",
-        new UnsupportedOperationException()
-      );
-    }
+
+  /**
+   * XPR.Configuration.Director<br>
+   *   <br>
+   *     Create a new XPR.Configuration.Director(true) {...}
+   *     further adding methods onLoad(JSON.Type.Variant) and toJSON()
+   *     for JSON Serialization support with XPR.Configuration.Director.
+   */
+  public static abstract class Director implements Supervisor, Plus.Help.Locator, JSON.Serialization {
+    private static String directorFault = "this configuration director does not support serialization";
+    protected boolean serializable = false;
+    public boolean serializable() { return serializable; }
+    protected Director(boolean serializable){this.serializable = serializable;}
     protected void onLoad(@NotNull JSON.Type.Variant storage) {
-      throw new Fault("this configuration does not support serialization",
-        new UnsupportedOperationException()
-      );
+      throw new Fault(directorFault, new UnsupportedOperationException());
+    }
+    public String toJSON() {
+      throw new Fault(directorFault, new UnsupportedOperationException());
     }
   };
 
@@ -261,12 +266,8 @@ public class Configuration {
     return director.serializable();
   }
 
-  final public String getSerialization() {
-    return director.onSave().toString(2);
-  }
-
-  final public String getSerialization(int spacing) {
-    return director.onSave().toString(spacing);
+  final public String toJSON() {
+    return director.toJSON();
   }
 
   final public void load(String serialization) {

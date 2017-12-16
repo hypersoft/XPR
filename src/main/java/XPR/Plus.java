@@ -25,6 +25,7 @@ package XPR;
   interface = portifice ((standard-contrivance = class)-portal/gateway) class-port
   instance = class-member or same as $[object]
 
+
   This codex = translation-table is not to be considered complete.
 
   It is not feasible to change all of the words in the java language. So,
