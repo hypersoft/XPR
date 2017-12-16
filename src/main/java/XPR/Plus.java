@@ -6,7 +6,7 @@ package XPR;
 
   to err is human, so is an error [or = suffix]
   exception = fault [except = "all but for CAUSE[=ion = contract = false; no-contract = fact]", fault = conditional-break]
-  object = value, variant, compound or data[-structure]
+  object = value, variant, compound or data[-structure] [ob = modify, ject = throw: ambiguous: lacking-clarity with the verbs as the noun, 2 modifications = 2 verbs as the one noun]
   array = type+s (as in bytes), elements, list (is plural), element-list (plural-container) or basic-list (generic, or simple: elementary) but not List (a compound-data-type because java claims the type)
   explicit = certain
   extends = morphs
