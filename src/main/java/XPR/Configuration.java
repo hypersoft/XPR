@@ -46,7 +46,7 @@ public class Configuration {
     public final String name;
     public final Selector selector;
     public final ValueType value;
-    public Parameter(@NotNull String name, @NotNull Selector matcher, @NotNull ValueType type) {
+    public Parameter(@NotNull String name, @NotNull Selector<?> matcher, @NotNull ValueType type) {
       this.name = name;
       this.selector = matcher;
       value = type;

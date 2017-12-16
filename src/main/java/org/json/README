@@ -18,18 +18,18 @@ package.
 The package compiles on Java 1.6-1.8.
 
 
-Variant: The Variant can parse text from a String or a Compiler
-to produce a map-like object. The object provides methods for manipulating its
-contents, and for producing a JSON compliant object serialization.
+Variant: The Variant can parse text from a String or an XPR.JSON.Compiler
+to create a map-like-compound-value. The compound-value contains methods for manipulating its
+contents and creating-JSON-compliant-compound-value-serializations.
 
-VariantList: The VariantList can parse text from a String or a Compiler
-to produce a vector-like object. The object provides methods for manipulating
-its contents, and for producing a JSON compliant array serialization.
+VariantList: The VariantList can parse text from a String or an XPR.JSON.Compiler
+to create a vector-like-compound-value. The compound-value contains methods for manipulating
+its contents and creating-JSON-compliant-basic-list-serializations.
 
-Compiler: The Compiler breaks a text into a sequence of individual
-tokens. It can be constructed from a String, Reader, or InputStream.
+Compiler: The XPR.JSON.Compiler breaks a text into a sequence of tokens. It can
+be constructed from a String, Reader, or InputStream.
 
-XPR.Fault: The XPR.Fault is the standard exception type thrown
+XPR.Fault: The XPR.Fault is the standard fault type thrown
 by this package.
 
 XPR.JSON.Type.Path: Implementation of 
@@ -37,13 +37,13 @@ XPR.JSON.Type.Path: Implementation of
 JSON Pointers both in the form of string representation and URI fragment
 representation.
 
-XPR.JSON.Serialization: The XPR.JSON.Serialization interface requires a XPR.JSON.Serialization.toJSON method,
-allowing an object to provide its own serialization.
+XPR.JSON.Serialization: The XPR.JSON.Serialization interface permits a
+compound-value to manage its own serialization.
 
-XPR.JSON.Builder: The XPR.JSON.Builder provides a convenient facility for
+XPR.JSON.Builder: The XPR.JSON.Builder is support for a convenient facility for
 building JSON strings.
 
-XPR.JSON.Builder: The XPR.JSON.Builder provides a convenient facility for building
+XPR.JSON.Builder: The XPR.JSON.Builder is support for a convenient facility for building
 JSON text through a writer.
 
 
@@ -63,7 +63,10 @@ XPR.JSON.Plus.XML: XPR.JSON.Plus.XML is the support for converting between JSON 
 
 XPR.JSON.Plus.XML.Kit: XPR.JSON.Plus.XML.Kit is the support for converting between JSONML and XML.
 
-XPR.JSON.Plus.XML.Compiler: XPR.JSON.Plus.XML.Compiler extends Compiler for parsing XML text.
+XPR.JSON.Plus.XML.Compiler: XPR.JSON.Plus.XML.Compiler extends XPR.JSON.Compiler for parsing XML text.
+
+Java "Properties" File Convertor support was dropped. XPR.Configuration is the
+correct functionality for such a feature.
 
 Unit tests are maintained in a separate project. Contributing developers can test 
 JSON-java pull requests with the code in this project: 
