@@ -13,13 +13,16 @@ package XPR;
   property = $[object], structure-member, compound-element, [logic: value of the/this]...
   implements = modeling (the noun) or modelings (the plural noun)
   inherits = shares (the value of THING; there is no "inherits-from" but there is a shares-with in coding)
-  implement = forge [a thing or construct]
+  implement = forge, construct, build, or frame [a system]
+  process, application = real-time-operating-methods (applied-science), system, software
+  project = plan, system, library, [name-](software-stack or framework)
+  procedure = method
   enumeration = codex
     [there are two-ways to say: e-numeration = (1) and en-umeration = (2);]
     [en = french: wrong-language;]
     [the correct translation word for "en" is "in": in+word = not-word = wrong-logic]
     [co = sharing, dex = table; correct-logic]
-  interface = portifice (standard-contrivance-portal/gateway)
+  interface = portifice ((standard-contrivance = class)-portal/gateway) class-port
 
   This codex = translation-table is not to be considered complete.
 
@@ -28,9 +31,15 @@ package XPR;
   use any alias we like, but coding with the knowledge is what makes the
   knowledge work.
 
-  Verbs as nouns are not considered correct-grammar, but will work for correct
-  code due to the difference in method = verb/noun. Every verb has a noun = name,
-  but no nouns are verbs in standard [A]english speech.
+  Verbs as nouns, and nouns as verbs are not considered correct-grammar, but
+  will work for correct code due to the difference in method = verb/noun.
+  Every verb has a noun = name, but no nouns are verbs in standard [A]english speech.
+
+  Say you have a friend by the name of Triston. One doesn't go about
+  "Tristoning" [notice the gerund: ing] people. Triston is not a verb. That's a
+  simple-verb-smell-test. Its good exercise for every verb to end with -ing:
+   Operating-Methods[while: could be now, then or when] vs. Operations-Methods
+   [in the moment, a dicey-speculation]
 
 */
 
