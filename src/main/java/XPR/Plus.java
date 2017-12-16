@@ -23,6 +23,7 @@ package XPR;
     [the correct translation word for "en" is "in": in+word = not-word = wrong-logic]
     [co = sharing, dex = table; correct-logic]
   interface = portifice ((standard-contrivance = class)-portal/gateway) class-port
+  instance = class-member or same as $[object]
 
   This codex = translation-table is not to be considered complete.
 
@@ -51,6 +52,23 @@ public class Plus {
   
   private Plus(){};
 
+
+  /**
+   * Compare the class of a value with a a class list of classes for likeness.
+   *
+   * java-language-correction for instanceof and isAssignableFrom
+   * @param value a java value
+   * @param kind a java class, java classes or a parameter-list of classes to test
+   * @return true when the value is a member of any one of the class kind(s).
+   */
+  static public boolean classMember(@NotNull Object value, @NotNull Class... kind) {
+    Class<?> valueType = value.getClass();
+    for (Class family: kind) {
+      if (valueType.isAssignableFrom(family)) return true;
+    }
+    return false;
+  }
+
   /**
    * Convenience feature to convert compound element types to basic-list.
    * @param data a supported java value.
@@ -59,10 +77,13 @@ public class Plus {
    * no support for the pass-through, a fault is flagged on the operation.
    */
   static public <ANY> ANY[] getBasicListOf(Object data) {
-    if (data instanceof Set) {
+    if (classMember(data, Set.class)) {
       return valueOf(((Set)data).toArray());
     }
-    throw new Fault("no solution for coercion of dimensional data type", new UnsupportedOperationException());
+    throw new Fault("no solution known for pass-through of compound data type "
+      +data.getClass().getSimpleName()
+      +" as a basic element list", new UnsupportedOperationException()
+    );
   }
 
 
@@ -87,10 +108,10 @@ public class Plus {
   /**
    * Search for a java class in a list of java classes.
    * @param a the class being sought
-   * @param b a class[], parameter list of classes or a single-class.
+   * @param b a java class, java classes or a parameter-list of classes to test
    * @return true if class a is found within class[] b or is b.
    */
-  public final static boolean sameClass(@NotNull Class a, Class... b) {
+  public final static boolean classMatch(@NotNull Class a, Class... b) {
     for (Class c: b) {
       if (a.equals(c)) return true;
     }

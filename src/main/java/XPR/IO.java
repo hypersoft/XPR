@@ -2,8 +2,6 @@ package XPR;
 
 import com.sun.istack.internal.NotNull;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 
 import static XPR.Plus.valueOf;
@@ -31,6 +29,9 @@ public class IO {
    * @author pc.wiz.tt@gmail.com
    */
   public abstract static class Codec {
+    static final public Transformation FORWARD = Transformation.SOURCE;
+    static final public Transformation BACKWARD = Transformation.OUTPUT;
+
     /**
      * <p></p>The transformation validation method.</p>
      *
@@ -68,31 +69,12 @@ public class IO {
       SOURCE, OUTPUT
     }
 
-    public static class Type {
-
-      static final public Transformation FORWARD = Transformation.SOURCE;
-      static final public Transformation BACKWARD = Transformation.OUTPUT;
-
-      private Type() {}
-
-      public abstract static class Buffer extends Codec {
-        @Override
-        public boolean canTransform(Transformation type, @NotNull Object data) {
-          Class dataType = data.getClass();
-          if (! Plus.sameClass(dataType, byte.class) ||
-              ! Plus.basicListClass(dataType)) return false;
-          return true;
-        }
-      }
-    }
-    public abstract static class Stream extends Codec {
-      private final static Class[] classes = new Class[]{
-        InputStream.class, OutputStream.class
-      };
+    public abstract static class Buffer extends Codec {
       @Override
       public boolean canTransform(Transformation type, @NotNull Object data) {
         Class dataType = data.getClass();
-        if (! Plus.sameClass(dataType, classes)) return false;
+        if (! Plus.classMatch(dataType, byte.class) ||
+            ! Plus.basicListClass(dataType)) return false;
         return true;
       }
     }

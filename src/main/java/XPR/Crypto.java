@@ -14,7 +14,7 @@ final public class Crypto {
 
     private Authentication(){}
 
-    public static final IO.Codec.Type.Buffer MD5Hash = new IO.Codec.Type.Buffer() {
+    public static final IO.Codec.Buffer MD5Hash = new IO.Codec.Buffer() {
 
       private final static String cipher = "MD5";
       private final static String name = cipher + "Hash";
@@ -24,12 +24,12 @@ final public class Crypto {
 
       @Override
       public boolean canTransform(Transformation type, Object data) {
-        if (type.equals(Type.BACKWARD)) return false;
+        if (type.equals(IO.Codec.BACKWARD)) return false;
         return super.canTransform(type, data);
       }
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
-        if (direction.equals(Type.BACKWARD)) throw new Fault(
+        if (direction.equals(IO.Codec.BACKWARD)) throw new Fault(
           new UnsupportedEncodingException(backwardTransformationFaultMessage)
         );
         MessageDigest md;
@@ -51,7 +51,7 @@ final public class Crypto {
 
   final public static class Basic {
     private Basic(){};
-    public static final IO.Codec.Type.Buffer Base64 = new IO.Codec.Type.Buffer() {
+    public static final IO.Codec.Buffer Base64 = new IO.Codec.Buffer() {
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
         byte[] source = valueOf(data);
@@ -73,7 +73,7 @@ final public class Crypto {
       }
     };
 
-    public static final IO.Codec.Type.Buffer Base16 = new IO.Codec.Type.Buffer() {
+    public static final IO.Codec.Buffer Base16 = new IO.Codec.Buffer() {
       @Override
       public <ANY> ANY transform(Transformation direction, Object data) {
         byte[] source = valueOf(data);
