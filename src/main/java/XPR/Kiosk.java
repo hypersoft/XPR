@@ -82,6 +82,7 @@ public class Kiosk<KTYPE, VTYPE> {
           return halt("attempting to store null " + type, false);
         }
         kiosk.put(id, value);
+        kioskSupervisor.onAdd(this, id, value);
         return (ANY) id;
       }
     } else if (kioskSupervisor.allow(Permission.OVERWRITE_KEY, id)) {
