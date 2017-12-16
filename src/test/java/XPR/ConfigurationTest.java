@@ -22,11 +22,6 @@ public class ConfigurationTest {
   @Before
   public void setUp() throws Exception {
     configuration = new Configuration("test",
-      new Configuration.Category[]{
-        new Configuration.Category("main",
-          new Configuration.Parameter[]{activation, file}
-        )
-      },
       new Configuration.Director(true) {
         HashMap<String, Object> database = new HashMap<>();
         @Override
@@ -70,7 +65,10 @@ public class ConfigurationTest {
         protected void onLoad(JSON.Type.Variant storage) {
           database.putAll(storage.toMap());
         }
-      }
+      },
+      new Configuration.Category(
+        "main", new Configuration.Parameter[]{activation, file}
+      )
     );
     assertEquals(3, configuration.configure("--activation", "--file", "/dev/stdin"));
   }
@@ -114,6 +112,9 @@ public class ConfigurationTest {
   public void toJSON() throws Exception {
     try {
       System.err.println(configuration.toJSON());
-    } catch (Exception e) { assertEquals(false, true); }
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertEquals(false, true);
+    }
   }
 }

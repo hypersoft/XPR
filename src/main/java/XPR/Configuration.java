@@ -14,7 +14,7 @@ public class Configuration {
   public static class Category {
     private final String name;
     private final Parameter[] parameter;
-    public Category(String name, Parameter[] parameters) {
+    public Category(String name, Parameter... parameters) {
       this.name = name;
       parameter = parameters;
     }
@@ -117,7 +117,8 @@ public class Configuration {
   private final Category[] category;
   private final Director director;
 
-  public Configuration(@NotNull String name, @NotNull Category[] categories, @NotNull Director director) {
+  public Configuration(@NotNull String name, @NotNull Director director,
+    @NotNull Category... categories) {
     this.name = name;  category = categories; this.director = director;
   }
 
