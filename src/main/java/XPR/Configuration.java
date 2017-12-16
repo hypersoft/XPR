@@ -1,7 +1,5 @@
 package XPR;
 
-import XPR.json.JSONObject;
-import XPR.json.JSONTokener;
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 
@@ -98,12 +96,12 @@ public class Configuration {
     protected boolean serializable() {
       return false;
     }
-    @NotNull protected JSONObject onSave() {
+    @NotNull protected JSON.Type.Variant onSave() {
       throw new Fault("this configuration does not support serialization",
         new UnsupportedOperationException()
       );
     }
-    protected void onLoad(@NotNull JSONObject storage) {
+    protected void onLoad(@NotNull JSON.Type.Variant storage) {
       throw new Fault("this configuration does not support serialization",
         new UnsupportedOperationException()
       );
@@ -272,7 +270,7 @@ public class Configuration {
   }
 
   final public void load(String serialization) {
-    director.onLoad(new JSONObject(new JSONTokener(serialization)));
+    director.onLoad(new JSON.Type.Variant(new JSON.Compiler(serialization)));
   }
 
 }

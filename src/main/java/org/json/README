@@ -1,11 +1,11 @@
-JSON in Java [package org.json]
+JSON in Java [package org.json has been transferred and modified to XPR.JSON]
 
 JSON is a light-weight, language independent, data interchange format.
 See http://www.JSON.org/
 
 The files in this package implement JSON encoders/decoders in Java.
 It also includes the capability to convert between JSON and XML, HTTP
-headers, Cookies, and CDL.
+headers, XPR.JSON.Plus.Cookies, and XPR.JSON.Plus.CSV.
 
 This is a reference implementation. There is a large number of JSON packages
 in Java. Perhaps someday the Java community will standardize on one. Until
@@ -18,52 +18,52 @@ package.
 The package compiles on Java 1.6-1.8.
 
 
-JSONObject.java: The JSONObject can parse text from a String or a JSONTokener
+Variant: The Variant can parse text from a String or a Compiler
 to produce a map-like object. The object provides methods for manipulating its
 contents, and for producing a JSON compliant object serialization.
 
-JSONArray.java: The JSONArray can parse text from a String or a JSONTokener
+VariantList: The VariantList can parse text from a String or a Compiler
 to produce a vector-like object. The object provides methods for manipulating
 its contents, and for producing a JSON compliant array serialization.
 
-JSONTokener.java: The JSONTokener breaks a text into a sequence of individual
+Compiler: The Compiler breaks a text into a sequence of individual
 tokens. It can be constructed from a String, Reader, or InputStream.
 
-JSONException.java: The JSONException is the standard exception type thrown
+XPR.Fault: The XPR.Fault is the standard exception type thrown
 by this package.
 
-JSONPointer.java: Implementation of 
+XPR.JSON.Type.Path: Implementation of 
 [JSON Pointer (RFC 6901)](https://tools.ietf.org/html/rfc6901). Supports
 JSON Pointers both in the form of string representation and URI fragment
 representation.
 
-JSONString.java: The JSONString interface requires a toJSONString method,
+XPR.JSON.Serialization: The XPR.JSON.Serialization interface requires a XPR.JSON.Serialization.toJSON method,
 allowing an object to provide its own serialization.
 
-JSONStringer.java: The JSONStringer provides a convenient facility for
+XPR.JSON.Builder: The XPR.JSON.Builder provides a convenient facility for
 building JSON strings.
 
-JSONWriter.java: The JSONWriter provides a convenient facility for building
+XPR.JSON.Builder: The XPR.JSON.Builder provides a convenient facility for building
 JSON text through a writer.
 
 
-CDL.java: CDL provides support for converting between JSON and comma
-delimited lists.
+XPR.JSON.Plus.CSV: XPR.JSON.Plus.CSV is the support for converting between JSON and comma
+separated values.
 
-Cookie.java: Cookie provides support for converting between JSON and cookies.
+XPR.JSON.Plus.Cookie: XPR.JSON.Plus.Cookie is the support for converting between JSON and cookies.
 
-CookieList.java: CookieList provides support for converting between JSON and
+XPR.JSON.Plus.Cookie.Batch: XPR.JSON.Plus.Cookie.Batch is the support for converting between JSON and
 cookie lists.
 
-HTTP.java: HTTP provides support for converting between JSON and HTTP headers.
+XPR.JSON.Plus.HTTP: XPR.JSON.Plus.HTTP is the support for converting between JSON and HTTP headers.
 
-HTTPTokener.java: HTTPTokener extends JSONTokener for parsing HTTP headers.
+XPR.JSON.Plus.HTTP.Compiler: XPR.JSON.Plus.HTTP.Compiler extends Compiler for parsing HTTP headers.
 
-XML.java: XML provides support for converting between JSON and XML.
+XPR.JSON.Plus.XML: XPR.JSON.Plus.XML is the support for converting between JSON and XML.
 
-JSONML.java: JSONML provides support for converting between JSONML and XML.
+XPR.JSON.Plus.XML.Kit: XPR.JSON.Plus.XML.Kit is the support for converting between JSONML and XML.
 
-XMLTokener.java: XMLTokener extends JSONTokener for parsing XML text.
+XPR.JSON.Plus.XML.Compiler: XPR.JSON.Plus.XML.Compiler extends Compiler for parsing XML text.
 
 Unit tests are maintained in a separate project. Contributing developers can test 
 JSON-java pull requests with the code in this project: 
@@ -74,7 +74,7 @@ Numeric types in this package comply with ECMA-404: The JSON Data Interchange Fo
 RFC 7159: The JavaScript Object Notation (JSON) Data Interchange Format 
 (https://tools.ietf.org/html/rfc7159#section-6). 
 This package fully supports Integer, Long, and Double Java types. Partial support 
-for BigInteger and BigDecimal values in JSONObject and JSONArray objects is provided 
+for BigInteger and BigDecimal values in Variant and VariantList objects is provided
 in the form of get(), opt(), and put() API methods.
 
 Although 1.6 compatibility is currently supported, it is not a project goal and may be
@@ -95,15 +95,15 @@ Release history:
 
 20160810    Revert code that was breaking opt*() methods.
 
-20160807    This release contains a bug in the JSONObject.opt*() and JSONArray.opt*() methods, 
+20160807    This release contains a bug in the Variant.opt*() and VariantList.opt*() methods,
 it is not recommended for use.
-Java 1.6 compatability fixed, JSONArray.toList() and JSONObject.toMap(),
-RFC4180 compatibility, JSONPointer, some exception fixes, optional XML type conversion. 
+Java 1.6 compatability fixed, VariantList.toList() and Variant.toMap(),
+RFC4180 compatibility, XPR.JSON.Type.Path, some exception fixes, optional XML type conversion. 
 Contains the latest code as of 7 Aug, 2016
 
 20160212    Java 1.6 compatibility, OSGi bundle. Contains the latest code as of 12 Feb, 2016.
 
-20151123    JSONObject and JSONArray initialization with generics. Contains the
+20151123    Variant and VariantList initialization with generics. Contains the
 latest code as of 23 Nov, 2015.
 
 20150729    Checkpoint for Maven central repository release. Contains the latest code 

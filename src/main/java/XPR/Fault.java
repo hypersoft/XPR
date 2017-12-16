@@ -3,7 +3,7 @@ package XPR;
 /**
  * A runtime exception class featuring error code support.
  */
-final public class Fault extends RuntimeException {
+public class Fault extends RuntimeException {
 
   private static final Kiosk<Integer, String> codeRegister
     = new Kiosk<Integer, String>(Fault.class.getSimpleName());
@@ -13,9 +13,9 @@ final public class Fault extends RuntimeException {
 
   private int code = noFaultCode;
 
-  private Fault(){code = noFaultCode;};
+  public Fault(){};
 
-  public Fault(Exception e) {
+  public Fault(Throwable e) {
     super(e);
   }
 
@@ -23,7 +23,7 @@ final public class Fault extends RuntimeException {
     super(message);
   }
 
-  public Fault(String message, Exception e) {
+  public Fault(String message, Throwable e) {
     super(message, e);
   }
 
