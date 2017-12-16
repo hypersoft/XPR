@@ -104,7 +104,8 @@ public class Configuration {
     private static String directorFault = "this configuration director does not support serialization";
     protected boolean serializable = false;
     public boolean serializable() { return serializable; }
-    protected Director(boolean serializable){this.serializable = serializable;}
+    public Director() {}
+    public Director(boolean serializable){this.serializable = serializable;}
     protected void onLoad(@NotNull JSON.Type.Variant storage) {
       throw new Fault(directorFault, new UnsupportedOperationException());
     }

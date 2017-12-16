@@ -24,7 +24,7 @@ package XPR;
     [co = sharing, dex = table; correct-logic]
   interface = portifice ((standard-contrivance = class)-portal/gateway) class-port
   instance = class-member or same as $[object]
-
+  import/include = (add-source, load-source, read-source, compile-source)-doings: specifically all of those things.
 
   This codex = translation-table is not to be considered complete.
 
@@ -49,17 +49,16 @@ import com.sun.istack.internal.NotNull;
 
 import java.util.Set;
 
-public class Plus {
-  
-  private Plus(){};
+public class Plus { private Plus(){};
 
 
   /**
-   * Compare the class of a value with a a class list of classes for likeness.
+   * Compare the class of a value with a class or list of classes for likeness.
    *
    * java-language-correction for instanceof and isAssignableFrom
+   *
    * @param value a java value
-   * @param kind a java class, java classes or a parameter-list of classes to test
+   * @param kind a java class, java classes or a parameter-list of java classes to test
    * @return true when the value is a member of any one of the class kind(s).
    */
   static public boolean classMember(@NotNull Object value, @NotNull Class... kind) {
@@ -81,12 +80,11 @@ public class Plus {
     if (classMember(data, Set.class)) {
       return valueOf(((Set)data).toArray());
     }
-    throw new Fault("no solution known for pass-through of compound data type "
-      +data.getClass().getSimpleName()
-      +" as a basic element list", new UnsupportedOperationException()
+    throw new Fault("no solution known for pass-through of compound data type"
+      +Speak.quoteExactTarget(data.getClass().getSimpleName())
+      +" as a basic list", new UnsupportedOperationException()
     );
   }
-
 
   /**
    * For casting the value to a known-type.
