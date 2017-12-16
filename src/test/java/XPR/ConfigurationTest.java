@@ -3,13 +3,13 @@ package XPR;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.System;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
 public class ConfigurationTest {
   Configuration configuration;
-
   Configuration.Parameter activation = new Configuration.Parameter(
     "activation", trigger -> trigger.equals("--activation")
   );
@@ -27,7 +27,7 @@ public class ConfigurationTest {
           new Configuration.Parameter[]{activation, file}
         )
       },
-      new Configuration.Director() {
+      new Configuration.Director(true) {
         HashMap<String, Object> database = new HashMap<>();
         @Override
         public boolean set(Configuration main,
@@ -62,6 +62,14 @@ public class ConfigurationTest {
           return null;
         }
 
+        @Override
+        public String toJSON() {
+          return new JSON.Type.Variant(database).toString();
+        }
+        @Override
+        protected void onLoad(JSON.Type.Variant storage) {
+          database.putAll(storage.toMap());
+        }
       }
     );
     assertEquals(3, configuration.configure("--activation", "--file", "/dev/stdin"));
@@ -96,8 +104,16 @@ public class ConfigurationTest {
     try {
       configuration.configure("--file", "--activation", "/dev/stdin");
     } catch (Fault f) {
+      System.err.print("FAULT-EXAMPLE: NOT-A-REAL-FAULT: ");
       f.printStackTrace();
       assertEquals(0, f.getFaultCode());
     }
+  }
+
+  @Test
+  public void toJSON() throws Exception {
+    try {
+      System.err.println(configuration.toJSON());
+    } catch (Exception e) { assertEquals(false, true); }
   }
 }
