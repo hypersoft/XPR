@@ -66,9 +66,7 @@ public class ConfigurationTest {
           database.putAll(storage.toMap());
         }
       },
-      new Configuration.Category(
-        "main", new Configuration.Parameter[]{activation, file}
-      )
+      new Configuration.Category("main", activation, file)
     );
     assertEquals(3, configuration.configure("--activation", "--file", "/dev/stdin"));
   }
