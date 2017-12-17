@@ -2,6 +2,7 @@ package XPR.IO;
 
 import XPR.Fault;
 import XPR.Kiosk;
+import XPR.Plus;
 
 import java.io.*;
 
@@ -10,6 +11,15 @@ import static XPR.Plus.valueOf;
 
 public class Stream {
 
+  final static Class[] streamType = new Class[] {
+    Closeable.class,        // 0 
+    InputStream.class,      // 1
+    OutputStream.class,     // 2
+    RandomAccessFile.class  // 3
+  };
+  
+  final static int INPUT_STREAM = 1, OUTPUT_STREAM = 2, RECORD_STREAM = 3;
+  
   private static Kiosk streamKiosk = new Kiosk(new Kiosk.Supervisor(){
     @Override
     public boolean permit(Kiosk.Operation operation, Object key) {
@@ -21,25 +31,23 @@ public class Stream {
       }
       return false;
     }
+
+    @Override
+    protected void onRemoved(Object key, Object value, boolean transfer) {
+      Closeable stream = valueOf(value);
+      if (value instanceof Flushable) try { ((Flushable)stream).flush();
+      } catch (Exception e) {e.printStackTrace();}
+      try {
+        if (! transfer) stream.close();
+      } catch (Exception e) {e.printStackTrace();}
+    }
+    
   }, new Kiosk.Storage.Type.RandomPointerMap(){
     @Override
     public Integer add(Object value) {
-      if (classMember(value, OutputStream.class, InputStream.class))
+      if (classMember(value, streamType))
         return super.add(value);
-      throw new Fault(new UnsupportedOperationException());
-    }
-
-    @Override
-    public void delete(Integer key) {
-      Object value = store.get(key);
-      if (value instanceof OutputStream) {
-        OutputStream x = valueOf(value);
-        try { x.flush(); } catch (IOException e) {}
-        try { x.close(); } catch (IOException e) { throw new Fault(e); } finally { super.delete(key); }
-      } else {
-        InputStream x = valueOf(value);
-        try { x.close(); } catch (IOException e) { throw new Fault(e); } finally { super.delete(key); }
-      }
+      throw new Fault(new IllegalAccessException());
     }
   });
 
@@ -47,7 +55,7 @@ public class Stream {
     return streamKiosk.get(pointer);
   }
 
-  static public int add(Closeable link) {
+  static public int add(Object link) {
     return streamKiosk.add(link);
   }
 
@@ -59,33 +67,95 @@ public class Stream {
     return streamKiosk.transfer(pointer);
   }
 
-  public static String getStreamType(Integer id) {
-    return streamKiosk.get(id).getClass().getSimpleName();
+  public static String getType(Integer pointer) {
+    return streamKiosk.get(pointer).getClass().getSimpleName();
   }
 
-  public static int getInputStreamBytesReady(Integer id) throws IOException {
-    return ((InputStream) streamKiosk.get(id)).available();
+  public static int getReadingStreamQueLength(Integer pointer) {
+    Object stream = streamKiosk.get(pointer);
+    if (Plus.classMember(stream, streamType[INPUT_STREAM])) {
+      try { return ((InputStream) stream).available(); } catch (Exception e) {
+        throw new Fault(e);
+      }
+    }
+    throw new Fault(new UnsupportedOperationException());
   }
 
-  public static int readInputStream(Integer id, Integer in) throws IOException,
+  public static void bookmarkReadingStream(Integer pointer, int readlimit) {
+    InputStream stream = valueOf(streamKiosk.get(pointer));
+    stream.mark(readlimit);
+  }
+
+  public static boolean canBookmarkReadingStream(Integer pointer) {
+    Object stream = streamKiosk.get(pointer);
+    if (Plus.classMember(stream, streamType[INPUT_STREAM])) {
+      InputStream source = valueOf(stream);
+      return source.markSupported();
+    }
+    return false;
+  }
+  
+  public static int read(Integer pointer, Integer in) throws IOException,
     IllegalAccessException
   {
-    InputStream x = (InputStream) streamKiosk.get(id);
-    return x.read(Buffer.get(in));
+    Object stream = streamKiosk.get(pointer);
+    if (Plus.classMember(stream, streamType[INPUT_STREAM])) {
+      InputStream source = valueOf(stream);
+      source.reset();
+      return source.read(Buffer.get(in));
+    }
+    if (Plus.classMember(stream, streamType[RECORD_STREAM])) {
+      RandomAccessFile database = valueOf(stream);
+      return database.read(Buffer.get(in));
+    }
+    throw new Fault(new UnsupportedOperationException());
   }
 
-  public static void writeOutputStream(Integer id, Integer out,
-    boolean flush) throws IOException, IllegalAccessException
+  public static void flushWritingStream(Integer pointer)
   {
-    OutputStream x = (OutputStream) streamKiosk.get(id);
-    byte[] source = Buffer.get(out);
-    x.write(source);
-    if (flush) x.flush();
+    Object stream = (OutputStream) streamKiosk.get(pointer);
+    if (Plus.classMember(stream, Flushable.class)) {
+      Flushable dest = valueOf(stream);
+      try {
+        dest.flush();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return;
+    }
+    throw new Fault(new UnsupportedOperationException());
+  }
+
+  public static void write(Integer pointer, Integer out, boolean flush) throws IOException, IllegalAccessException
+  {
+    Object stream = (OutputStream) streamKiosk.get(pointer);
+    if (Plus.classMember(stream, streamType[INPUT_STREAM])) {
+      byte[] source = Buffer.get(out);
+      OutputStream dest = valueOf(stream);
+      dest.write(source);
+      if (flush) dest.flush();
+      return;
+    }
+    if (Plus.classMember(stream, streamType[RECORD_STREAM])) {
+      DataOutput dest = valueOf(stream);
+      dest.write(Buffer.get(out));
+      return;
+    }
+    throw new Fault(new UnsupportedOperationException());
   }
 
   public static void closeStream(Integer id) { streamKiosk.delete(id); }
-
-  public static Integer openFileInputStream(String file) throws
+  
+  public static Integer getFileRecordStream(String path) {
+    try {
+      RandomAccessFile f = new RandomAccessFile(path, "rw");
+      return streamKiosk.add(f);
+    } catch (FileNotFoundException e) {
+      throw new Fault(e);
+    }
+  }
+  
+  public static Integer getFileReadingStream(String file) throws
     FileNotFoundException
   {
     File path = new File(file);
@@ -93,7 +163,7 @@ public class Stream {
     return streamKiosk.add(x);
   }
 
-  public static Integer openFileOutputStream(String file) throws
+  public static Integer getFileWritingStream(String file) throws
     FileNotFoundException
   {
     File path = new File(file);
@@ -101,7 +171,16 @@ public class Stream {
     return streamKiosk.add(x);
   }
 
-  private static byte[] readStream(InputStream is, int initialBufferCapacity) throws IOException {
+  public static Integer getDataOutputStream(Integer pointer) {
+    Object stream = valueOf(streamKiosk.get(pointer));
+    if (Plus.classMember(stream, streamType[OUTPUT_STREAM])) {
+      OutputStream dest = streamKiosk.transfer(pointer);
+      return streamKiosk.add(new DataOutputStream(dest));
+    }
+    throw new Fault(new UnsupportedOperationException());
+  }
+
+  private static byte[] captureWholeReadingStream(InputStream is, int initialBufferCapacity) throws IOException {
     if (initialBufferCapacity <= 0) {
       throw new IllegalArgumentException("Bad initialBufferCapacity: " + initialBufferCapacity);
     } else {
@@ -130,14 +209,43 @@ public class Stream {
     }
   }
 
-  public static Integer inputStreamToBuffer(Integer id, int bufferSize)
-    throws IllegalAccessException, IOException
+  public static Integer readWholeStreamToBuffer(Integer id, int bufferSize)
   {
-    byte[] units = readStream(
-      (InputStream) streamKiosk.transfer(id),
-      bufferSize == 0 ? 1024 : bufferSize
-    );
-    return Buffer.add(units);
+    try {
+      byte[] units = captureWholeReadingStream(
+        streamKiosk.transfer(id),
+        bufferSize == 0 ? 1024 : bufferSize
+      );
+      return Buffer.add(units);
+    } catch (Exception e) {throw new Fault(e);}
   }
 
+  public static class Pipes {
+    public static class Synthetic {
+      public static class Pipe {
+        public final Destination destination;
+        public final Source source;
+        final int pointer[] = new int[2];
+        public Pipe() {
+          destination = new Destination();
+          try {
+            source = new Source(destination);
+          } catch (IOException e) {
+            throw new Fault(e);
+          }
+          pointer[0] = Stream.add(destination);
+          pointer[1] = Stream.add(source);
+        }
+        public int getPointer(int number) {
+          return pointer[number];
+        }
+      }
+      public static class Destination extends PipedOutputStream {
+        public Destination(){}
+      }
+      public static class Source extends PipedInputStream {
+        public Source(Destination d) throws IOException {super(d);}
+      }
+    }
+  }
 }
