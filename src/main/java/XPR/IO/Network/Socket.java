@@ -25,12 +25,12 @@ public class Socket extends java.net.Socket {
   }
 
   @Override
-  public InputStream getInputStream() throws IOException {
+  public InputStream getInputStream() {
     return Stream.get(reader);
   }
 
   @Override
-  public OutputStream getOutputStream() throws IOException {
+  public OutputStream getOutputStream() {
     return Stream.get(writer);
   }
 
