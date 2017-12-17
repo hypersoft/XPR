@@ -9,7 +9,7 @@ import static XPR.Plus.valueOf;
 public class Kiosk {
 
   public enum Operation {
-    ADD_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, CHECK_LENGTH, LIST_KEYS
+    ADD_KEY, ADD_NULL_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, CHECK_LENGTH, LIST_KEYS
   }
 
   public static class Supervisor {
@@ -91,7 +91,8 @@ public class Kiosk {
   }
 
   public void set(Object key, Object value) {
-    if (kSupervisor.permit(Operation.SET_KEY, valueOf(key))) {
+    if (value == null && ! kSupervisor.permit(Operation.ADD_NULL_KEY, null));
+    else if (kSupervisor.permit(Operation.SET_KEY, valueOf(key))) {
       kStorage.set(valueOf(key), value);
       kSupervisor.onAdded(key, value);
     }
@@ -99,8 +100,12 @@ public class Kiosk {
   }
 
   public Integer add(Object value) {
-    if (kSupervisor.permit(Operation.ADD_KEY, null))
-      return kStorage.add(value);
+    if (value == null && ! kSupervisor.permit(Operation.ADD_NULL_KEY, null));
+    else if (kSupervisor.permit(Operation.ADD_KEY, null)) {
+      int key = kStorage.add(value);
+      kSupervisor.onAdded(key, value);
+      return key;
+    }
     throw new Fault(new IllegalAccessError());
   }
 
