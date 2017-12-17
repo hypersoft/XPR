@@ -20,7 +20,7 @@ public class Stream {
     DataInputStream.class,  // 5
   };
   
-  final static int SOURCE_STREAM = 1, OUTPUT_STREAM = 2, RECORD_STREAM = 3,
+  final static int READING_STREAM = 1, WRITING_STREAM = 2, RECORD_STREAM = 3,
     DATA_STREAM_OUT = 4, DATA_STREAM_IN = 5;
   
   private static Kiosk streamKiosk = new Kiosk(new Kiosk.Supervisor(){
@@ -76,7 +76,7 @@ public class Stream {
 
   public static int getReadingStreamQueLength(Integer pointer) {
     Object stream = streamKiosk.get(pointer);
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) {
       try { return ((InputStream) stream).available(); } catch (Exception e) {
         throw new Fault(e);
       }
@@ -86,7 +86,7 @@ public class Stream {
 
   public static void bookmarkReadingStream(Integer pointer, int readlimit) {
     Object stream = streamKiosk.get(pointer);
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) try {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) try {
       InputStream source = valueOf(stream);
       source.mark(readlimit);
       return;
@@ -96,7 +96,7 @@ public class Stream {
 
   public static void resetReadingStream(Integer pointer) {
     Object stream = valueOf(streamKiosk.get(pointer));
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) try {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) try {
       InputStream source = valueOf(stream);
       source.reset();
       return;
@@ -106,7 +106,7 @@ public class Stream {
 
   public static boolean canBookmarkReadingStream(Integer pointer) {
     Object stream = streamKiosk.get(pointer);
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) {
       InputStream source = valueOf(stream);
       return source.markSupported();
     }
@@ -117,7 +117,7 @@ public class Stream {
     IllegalAccessException
   {
     Object stream = streamKiosk.get(pointer);
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) {
       InputStream source = valueOf(stream);
       source.reset();
       return source.read(Buffer.get(in));
@@ -151,7 +151,7 @@ public class Stream {
   public static void write(Integer pointer, Integer out, boolean flush) throws IOException, IllegalAccessException
   {
     Object stream = (OutputStream) streamKiosk.get(pointer);
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) {
       byte[] source = Buffer.get(out);
       OutputStream dest = valueOf(stream);
       dest.write(source);
@@ -200,7 +200,7 @@ public class Stream {
 
   public static Integer getDataOutputStream(Integer pointer) {
     Object stream = valueOf(streamKiosk.get(pointer));
-    if (Plus.classMember(stream, streamType[OUTPUT_STREAM])) {
+    if (Plus.classMember(stream, streamType[WRITING_STREAM])) {
       OutputStream dest = streamKiosk.transfer(pointer);
       return streamKiosk.add(new DataOutputStream(dest));
     }
@@ -250,7 +250,7 @@ public class Stream {
         return Buffer.add(data);
       } catch (Exception e) { throw new Fault(e); }
     }
-    if (Plus.classMember(stream, streamType[SOURCE_STREAM])) {
+    if (Plus.classMember(stream, streamType[READING_STREAM])) {
       try {
         byte[] units = captureWholeReadingStream(
           streamKiosk.transfer(pointer),
