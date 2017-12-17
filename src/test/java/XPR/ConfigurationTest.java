@@ -3,7 +3,6 @@ package XPR;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.System;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -15,7 +14,7 @@ public class ConfigurationTest {
   );
 
   Configuration.Parameter file = new Configuration.Parameter(
-    "file", trigger -> trigger.equals("--file") || trigger.equals("-f"),
+    "my.super.file", trigger -> trigger.equals("--file") || trigger.equals("-f"),
     Configuration.Parameter.ValueType.MANDATORY
   );
 
@@ -59,10 +58,10 @@ public class ConfigurationTest {
 
         @Override
         public String toJSON() {
-          return new JSON.Type.Variant(database).toString();
+          return new XPR.JSON.Type.Variant(database).toString();
         }
         @Override
-        protected void onLoad(JSON.Type.Variant storage) {
+        protected void onLoad(XPR.JSON.Type.Variant storage) {
           database.putAll(storage.toMap());
         }
       },
@@ -72,8 +71,13 @@ public class ConfigurationTest {
   }
 
   @Test
-  public void findParameter() throws Exception {
+  public void findParameterByTrigger() throws Exception {
     assertEquals(activation, configuration.findParameterByTrigger("--activation"));
+  }
+
+  @Test
+  public void findParameterByName() throws Exception {
+    assertEquals(file, configuration.findParameterByName("test.main.my.super.file"));
   }
 
   @Test
@@ -93,7 +97,7 @@ public class ConfigurationTest {
 
   @Test
   public void get_file() throws Exception {
-    assertEquals("/dev/stdin", configuration.get("test.main.file"));
+    assertEquals("/dev/stdin", configuration.get("test.main.my.super.file"));
   }
 
   @Test public void parameter_value_fail() throws Exception {

@@ -7,12 +7,12 @@ package XPR;
  */
 public class Fault extends RuntimeException {
 
-  private static final Kiosk kiosk = getSession();
+  private static Kiosk kiosk = getSession();
 
   public final static int noFaultCode = 0;
 
   static private Kiosk getSession() {
-    Kiosk k = new Kiosk(new Kiosk.Supervisor(){
+    kiosk = new Kiosk(new Kiosk.Supervisor(){
       @Override
       public boolean permit(Kiosk.Operation operation, Object id) {
         switch (operation) {
@@ -23,15 +23,15 @@ public class Fault extends RuntimeException {
                 + Speak.quoteCitation(id) + " exists as"
                 + Speak.quoteExactTarget(kiosk.get(id))
             );
-          }
+          } else return true;
           case CHECK_KEY:
           case GET_KEY: return true;
           default: return false;
         }
       }
     });
-    k.set(noFaultCode, "no system error message is known for this error code");
-    return k;
+    kiosk.set(noFaultCode, "no system error message is known for this error code");
+    return kiosk;
   }
 
   private int code = noFaultCode;

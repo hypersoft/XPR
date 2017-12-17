@@ -1,5 +1,7 @@
 package XPR;
 
+import java.util.StringJoiner;
+
 public final class Speak {
   private Speak(){};
   public static String quoteCitation(Object text) {
@@ -62,6 +64,28 @@ public final class Speak {
       + quoteAnd("this entry-point takes a minimum of")
       + quoteCountPlurality(max, "parameter")
       ;
+  }
+
+  public static String concatenate(String join, String... data)
+  {
+    return concatenate(join, 0, 0, data);
+  }
+
+  public static String concatenate(String join, int start, String... data)
+  {
+    return concatenate(join, start, 0, data);
+  }
+
+  public static String concatenate(String join, int start, int count,
+    String... data) {
+    StringJoiner j = new StringJoiner(join);
+    if (count < 0) count += data.length;
+    else if (count == 0) count = data.length;
+    else count += start;
+    for (int i = start; i < count; i++) {
+      j.add(data[i]);
+    }
+    return j.toString();
   }
 
 }

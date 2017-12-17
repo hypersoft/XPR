@@ -9,7 +9,7 @@ import static XPR.Plus.valueOf;
 public class Kiosk {
 
   public enum Operation {
-    ADD_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, LIST_KEYS, SERIALIZE, LOAD
+    ADD_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, LIST_KEYS
   }
 
   public static class Supervisor {
@@ -88,7 +88,7 @@ public class Kiosk {
   public void set(Object key, Object value) {
     if (kSupervisor.permit(Operation.SET_KEY, valueOf(key)))
       kStorage.set(valueOf(key), value);
-    throw new Fault(new IllegalAccessError());
+    else throw new Fault(new IllegalAccessError());
   }
 
   public Integer add(Object value) {
@@ -100,7 +100,7 @@ public class Kiosk {
   public void delete(Object key) {
     if (kSupervisor.permit(Operation.DELETE_KEY, valueOf(key)))
       kStorage.delete(valueOf(key));
-    throw new Fault(new IllegalAccessError());
+    else throw new Fault(new IllegalAccessError());
   }
 
   public <ANY> ANY transfer(Object key) {

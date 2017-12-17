@@ -26,7 +26,7 @@ public class Configuration {
       return null;
     }
     @Nullable
-    public Parameter findParameterByOption(@NotNull String option) {
+    public Parameter findParameterByTrigger(@NotNull String option) {
       for (Parameter p: parameter) {
         if (p.selector.match(option)) return p;
       }
@@ -97,16 +97,16 @@ public class Configuration {
    * XPR.Configuration.Director<br>
    *   <br>
    *     Create a new XPR.Configuration.Director(true) {...}
-   *     further adding methods onLoad(JSON.Type.Variant) and toJSON()
+   *     further adding methods onLoad(XPR.JSON.Type.Variant) and toJSON()
    *     for JSON Serialization support with XPR.Configuration.Director.
    */
-  public static abstract class Director implements Supervisor, Plus.Help.Locator, JSON.Serialization {
+  public static abstract class Director implements Supervisor, Plus.Help.Locator, XPR.JSON.Serialization {
     private static String directorFault = "this configuration director does not support serialization";
     protected boolean serializable = false;
     public boolean serializable() { return serializable; }
     public Director() {}
     public Director(boolean serializable){this.serializable = serializable;}
-    protected void onLoad(@NotNull JSON.Type.Variant storage) {
+    protected void onLoad(@NotNull XPR.JSON.Type.Variant storage) {
       throw new Fault(directorFault, new UnsupportedOperationException());
     }
     public String toJSON() {
@@ -133,9 +133,6 @@ public class Configuration {
   }
 
   @Nullable final public Category findCategoryByName(String search) {
-    if (search.contains(".")) {
-      search = search.split("\\.")[1];
-    }
     for (Category c: category) {
       if (c.name.equals(search)) return c;
     }
@@ -143,22 +140,18 @@ public class Configuration {
   }
 
   @Nullable final public Parameter findParameterByName(String search) {
-    if (search.contains(".")) {
-      search = search.split("\\.")[2];
-    }
-    if (search == null) return null;
-    int x; Parameter parameter = null;
-    for (x=0; x< category.length; x++) {
-      if ((parameter = category[x].findParameterByName(search)) != null) break;
-    }
-    return parameter;
+    String[] names = search.split("\\.");
+    Category c = findCategoryByName(names[1]);
+    if (c == null) return null;
+    String parameterName = Speak.concatenate(".", 2, names);
+    return c.findParameterByName(parameterName);
   }
 
   @Nullable public final Parameter findParameterByTrigger(String search) {
     if (search == null) return null;
     int x; Parameter parameter = null;
     for (x=0; x< category.length; x++) {
-      if ((parameter = category[x].findParameterByOption(search)) != null) break;
+      if ((parameter = category[x].findParameterByTrigger(search)) != null) break;
     }
     return parameter;
   }
@@ -167,12 +160,12 @@ public class Configuration {
     return name;
   }
 
-  @NotNull public String buildParameterPath(@NotNull Category category, @NotNull Parameter parameter) {
-    return this.name+"."+category.name+"."+parameter.name;
-  }
-
   @NotNull public String getParameterPath(Parameter parameter) {
-    return buildParameterPath(getParameterCategory(parameter), parameter);
+    return Speak.concatenate(".",
+      this.name,
+      getParameterCategory(parameter).name,
+      parameter.name
+    );
   }
 
   @Nullable private String nextValue(@NotNull String[] parameters, int index) {
@@ -273,7 +266,7 @@ public class Configuration {
   }
 
   final public void load(String serialization) {
-    director.onLoad(new JSON.Type.Variant(new JSON.Compiler(serialization)));
+    director.onLoad(new XPR.JSON.Type.Variant(new XPR.JSON.Compiler(serialization)));
   }
 
 }

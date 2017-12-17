@@ -1,34 +1,15 @@
-package XPR;
+package XPR.IO;
 
+import XPR.Plus;
 import com.sun.istack.internal.NotNull;
-
-import java.nio.charset.Charset;
 
 import static XPR.Plus.valueOf;
 
-public class IO {
-
-  public static final String getCharSetName() {
-    return getCharSet().name();
-  }
-
-  public static final Charset getCharSet() {
-    return Charset.forName(java.lang.System.getProperty("file.encoding"));
-  }
-
-  public static final void setCharSet(Charset cs) {
-    java.lang.System.setProperty("file.encoding", cs.name());
-  }
-
-  public static final Charset getSystemCharSet() {
-    return Charset.defaultCharset();
-  }
-
-  /**
+/**
    * A two-way-data-transformation-gate, with validation function.
    * @author pc.wiz.tt@gmail.com
    */
-  public abstract static class Codec {
+  public abstract class Codec {
     static final public Transformation FORWARD = Transformation.SOURCE;
     static final public Transformation BACKWARD = Transformation.OUTPUT;
 
@@ -79,5 +60,3 @@ public class IO {
       }
     }
   }
-
-}
