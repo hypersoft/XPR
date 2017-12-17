@@ -9,7 +9,10 @@ import static XPR.Plus.valueOf;
 public class Kiosk {
 
   public enum Operation {
-    ADD_KEY, ADD_NULL_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, CHECK_LENGTH, LIST_KEYS
+    ADD_KEY, ADD_NULL_KEY,
+    DELETE_KEY, GET_KEY, SET_KEY,
+    CHECK_KEY, TRANSFER_KEY,
+    CHECK_LENGTH, LIST_KEYS
   }
 
   public static class Supervisor {

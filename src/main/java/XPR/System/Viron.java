@@ -1,9 +1,10 @@
 package XPR.System;
 
 import XPR.Fault;
+import XPR.IO.Stream;
 import XPR.Plus;
 
-import java.io.File;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystemException;
 import java.util.HashMap;
@@ -94,5 +95,46 @@ public class Viron { private Viron(){};
         throw new Fault(new FileSystemException("cannot change directory; file not found"));
       cwd = f.getAbsolutePath();
     }
+
+  static private int ios[] = new int[] {
+    Stream.add(System.in),
+    Stream.add(System.out),
+    Stream.add(System.err)
+  };
+
+  public static boolean setInputStream(Integer pointer) {
+    InputStream x = (InputStream) Stream.get(pointer);
+    java.lang.System.setIn(x);
+    ios[0] = pointer;
+    return true;
+  }
+
+  static String selectStringCodec(String source) {
+    if (source == null) return getCharSetName();
+    else return source;
+  }
+
+  public static Integer getInputStream() { return ios[0]; }
+
+  public static boolean setOutputStream(Integer pointer, String codec) throws
+    UnsupportedEncodingException
+  {
+    OutputStream stream = (OutputStream) Stream.get(pointer);
+    java.lang.System.setOut(new PrintStream(stream, true, selectStringCodec(codec)));
+    ios[1] = pointer;
+    return true;
+  }
+
+  public static Integer getOutputStream() { return ios[1]; }
+
+  public static boolean setStandardErrorStream(Integer pointer, String codec) throws
+    UnsupportedEncodingException {
+    OutputStream x = (OutputStream) Stream.get(pointer);
+    java.lang.System.setErr(new PrintStream(x, true, selectStringCodec(codec)));
+    ios[2] = pointer;
+    return true;
+  }
+
+  public static Integer getErrorStream() { return ios[2]; }
 
   }
