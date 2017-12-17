@@ -271,28 +271,28 @@ public class Stream {
   public static class Pipes {
     public static class Synthetic {
       public static class Pipe {
-        public final Destination destination;
-        public final Source source;
+        public final WritingPipe writingPipe;
+        public final ReadingPipe readingPipe;
         final int pointer[] = new int[2];
         public Pipe() {
-          destination = new Destination();
+          writingPipe = new WritingPipe();
           try {
-            source = new Source(destination);
+            readingPipe = new ReadingPipe(writingPipe);
           } catch (IOException e) {
             throw new Fault(e);
           }
-          pointer[0] = Stream.add(destination);
-          pointer[1] = Stream.add(source);
+          pointer[0] = Stream.add(writingPipe);
+          pointer[1] = Stream.add(readingPipe);
         }
         public int getPointer(int number) {
           return pointer[number];
         }
       }
-      public static class Destination extends PipedOutputStream {
-        public Destination(){}
+      public static class WritingPipe extends PipedOutputStream {
+        public WritingPipe(){}
       }
-      public static class Source extends PipedInputStream {
-        public Source(Destination d) throws IOException {super(d);}
+      public static class ReadingPipe extends PipedInputStream {
+        public ReadingPipe(WritingPipe d) throws IOException {super(d);}
       }
     }
   }
