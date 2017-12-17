@@ -15,10 +15,13 @@ public class Stream {
     Closeable.class,        // 0 
     InputStream.class,      // 1
     OutputStream.class,     // 2
-    RandomAccessFile.class  // 3
+    RandomAccessFile.class,  // 3
+    DataOutputStream.class,
+    DataInputStream.class,
   };
   
-  final static int INPUT_STREAM = 1, OUTPUT_STREAM = 2, RECORD_STREAM = 3;
+  final static int INPUT_STREAM = 1, OUTPUT_STREAM = 2, RECORD_STREAM = 3,
+    DATA_STREAM_OUT = 4, DATA_STREAM_IN = 5;
   
   private static Kiosk streamKiosk = new Kiosk(new Kiosk.Supervisor(){
     @Override
@@ -108,6 +111,10 @@ public class Stream {
       RandomAccessFile database = valueOf(stream);
       return database.read(Buffer.get(in));
     }
+    if (Plus.classMember(stream, streamType[DATA_STREAM_IN])) {
+      DataInputStream database = valueOf(stream);
+      return database.read(Buffer.get(in));
+    }
     throw new Fault(new UnsupportedOperationException());
   }
 
@@ -137,7 +144,12 @@ public class Stream {
       return;
     }
     if (Plus.classMember(stream, streamType[RECORD_STREAM])) {
-      DataOutput dest = valueOf(stream);
+      RandomAccessFile dest = valueOf(stream);
+      dest.write(Buffer.get(out));
+      return;
+    }
+    if (Plus.classMember(stream, streamType[DATA_STREAM_OUT])) {
+      DataOutputStream dest = valueOf(stream);
       dest.write(Buffer.get(out));
       return;
     }
@@ -177,6 +189,8 @@ public class Stream {
       OutputStream dest = streamKiosk.transfer(pointer);
       return streamKiosk.add(new DataOutputStream(dest));
     }
+    if (Plus.classMember(stream, streamType[RECORD_STREAM]))
+      return pointer;
     throw new Fault(new UnsupportedOperationException());
   }
 
