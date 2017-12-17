@@ -1,145 +1,124 @@
 package XPR;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.HashMap;
 
-import static XPR.Math.getRandomInteger;
+import static XPR.Plus.valueOf;
 
-public class Kiosk<KTYPE, VTYPE> {
+public class Kiosk {
 
-  public enum Permission {
-    OVERWRITE_KEY,
-    ADD_KEY, ADD_NULL_KEY,
-    UNHANDLED_REQUESTS,
-    QUERY
+  public enum Operation {
+    ADD_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, LIST_KEYS, SERIALIZE, LOAD
   }
 
-  public static interface Supervisor<KTYPE, VTYPE> {
-    boolean allow(Permission permission, KTYPE id);
-    void onAdd(Kiosk kiosk, KTYPE id, VTYPE value);
-    void onRemove(Kiosk kiosk, KTYPE id, VTYPE value, boolean transfer);
+  public static class Supervisor {
+
+    final static Supervisor nullSuperVisor = new Supervisor();
+
+    public boolean permit(Operation operation, Object id) {
+      return true;
+    }
+
   }
 
-  private HashMap<KTYPE, VTYPE> kiosk;
-  private int size = 16;
-  public final String type;
-  private final Supervisor<KTYPE, VTYPE> kioskSupervisor;
+  public static abstract class Storage<KTYPE, VTYPE> {
 
-  public Kiosk(String name) {this(name, null);}
+    public abstract VTYPE get(KTYPE key);
+    public abstract void set(KTYPE key, VTYPE value);
+    public abstract KTYPE add(VTYPE value);
+    public abstract void delete(KTYPE key);
+    public abstract VTYPE transfer(KTYPE key);
+    public abstract KTYPE[] listKeys();
+    public abstract boolean exists(KTYPE key);
 
-  public Kiosk(Supervisor<KTYPE, VTYPE> tracker) {
-    this("item", tracker);
-  }
+    public static class Type {
 
-  private static final Supervisor NULL_MANAGER = new Supervisor() {
-    @Override
-    public boolean allow(Permission permission, Object id) { return true; }
-    @Override
-    public void onAdd(Kiosk kiosk, Object id, Object value) {}
-    @Override
-    public void onRemove
-      (Kiosk kiosk, Object id, Object value, boolean transfer) {}
-  };
-
-  public Kiosk(String type, Supervisor<KTYPE, VTYPE> kioskSupervisor) {
-    this.type = type;
-    kiosk = new HashMap<>(size);
-    this.kioskSupervisor = kioskSupervisor == null ? NULL_MANAGER : kioskSupervisor;
-  }
-
-  private <ANY> ANY halt(String type, boolean clear) {
-    if (kioskSupervisor.allow(Permission.UNHANDLED_REQUESTS, (KTYPE)(Integer)0)) return null;
-    if (clear) {kiosk.clear();}
-    throw new Fault(this.getClass().getSimpleName(),
-      new IllegalAccessException(type
-        + (clear ? Speak.quoteAnd("all known entities have been cleared"):"")
-        + Speak.quoteAnd("please correct your memory access routines")
-      ));
-  }
-
-  final public boolean has(KTYPE key) {
-    if (kioskSupervisor.allow(Permission.QUERY, key))
-      return kiosk.containsKey(key);
-    return false;
-  }
-
-  final public Integer newKioskID() {
-    Integer id = getRandomInteger(1024, Integer.MAX_VALUE);
-    for (;kiosk.containsKey(id);) id = getRandomInteger(1024, Integer.MAX_VALUE);
-    return id;
-  }
-
-  final public <ANY> ANY get(KTYPE id) {
-    VTYPE unit = kiosk.get(id);
-    if (unit == null) return halt("request for unknown "+ type, true);
-    return (ANY) unit;
-  }
-
-  final public <ANY> ANY set(KTYPE id, VTYPE value) {
-    VTYPE unit = kiosk.get(id);
-    if (unit == null) {
-      if (kioskSupervisor.allow(Permission.ADD_KEY, id)) {
-        if (value == null && ! kioskSupervisor.allow(Permission.ADD_NULL_KEY, (KTYPE)id)) {
-          return halt("attempting to store null " + type, false);
+      public static class RandomPointerMap<VTYPE> extends Storage<Integer, VTYPE>{
+        private HashMap<Integer, Object> store = new HashMap<>();
+        private Integer generateKey() {
+          Integer key; while (store.containsKey(
+            key = Math.getRandomInteger(1024, Integer.MAX_VALUE)
+          ));
+          return key;
         }
-        kiosk.put(id, value);
-        kioskSupervisor.onAdd(this, id, value);
-        return (ANY) id;
+        @Override
+        public VTYPE get(Integer key) { return valueOf(store.get(key)); }
+        @Override
+        public void set(Integer key, VTYPE value) { store.put(key, value); }
+        @Override
+        public Integer add(VTYPE value) {
+          Integer key = generateKey(); store.put(key, value);
+          return key;
+        }
+        @Override
+        public void delete(Integer key) { store.remove(key); }
+        @Override
+        public VTYPE transfer(Integer key) { return valueOf(store.remove(key)); }
+        @Override
+        public Integer[] listKeys() { return new Integer[0]; }
+        @Override
+        public boolean exists(Integer key) { return store.containsKey(key); }
+
       }
-    } else if (kioskSupervisor.allow(Permission.OVERWRITE_KEY, id)) {
-      kiosk.put(id, value);
-      return (ANY) id;
     }
-    return halt("attempting to set unknown "+ type + " key", true);
+
   }
 
-  final public <ANY> ANY add(VTYPE value) {
-    Integer id = newKioskID();
-    if (value == null && ! kioskSupervisor.allow(Permission.ADD_NULL_KEY, (KTYPE)id))
-      return halt("attempting to store null "+ type, false);
-    kiosk.put((KTYPE) id, value);
-    if (loadFactor() > 0.70) resizeStorage((int) size * 2);
-    kioskSupervisor.onAdd(this, (KTYPE) id, value);
-    return (ANY) id;
+  private final Storage<Integer, Object> kStorage;
+  private final Supervisor kSupervisor;
+
+  public Kiosk() {this(Supervisor.nullSuperVisor);}
+
+  public Kiosk(@NotNull Supervisor supervisor) {
+    this(supervisor, new Storage.Type.RandomPointerMap<>());
   }
 
-  final public void free(KTYPE id) {
-    VTYPE free = kiosk.remove(id);
-    if (free == null) return;
-    long length = length();
-    boolean
-      lessThan25PercentLoad = loadFactor() < 0.25,
-      moreThan16SlotsFree = size - length > 16;
-    if (lessThan25PercentLoad && moreThan16SlotsFree) { resizeStorage((int) length + 16); }
-    kioskSupervisor.onRemove(this, id, free, false);
+  public Kiosk(@NotNull Supervisor supervisor, @NotNull Storage storage) {
+    kSupervisor = supervisor;
+    kStorage = storage;
   }
 
-  private final void resizeStorage(int size) {
-    HashMap out = new HashMap<KTYPE, VTYPE>(size);
-    this.size = size;
-    out.putAll(kiosk);
-    kiosk.clear();
-    kiosk = out;
+  public <ANY> ANY get(Object key) {
+    if (kSupervisor.permit(Operation.GET_KEY, valueOf(key)))
+      return valueOf(kStorage.get(valueOf(key)));
+    throw new Fault(new IllegalAccessError());
   }
 
-  public void clear() {
-    kiosk.clear();
-    kioskSupervisor.onRemove(null, null, null, false);
+  public void set(Object key, Object value) {
+    if (kSupervisor.permit(Operation.SET_KEY, valueOf(key)))
+      kStorage.set(valueOf(key), value);
+    throw new Fault(new IllegalAccessError());
   }
 
-  final public <ANY> ANY transfer(KTYPE id) throws IllegalAccessException {
-    VTYPE unit = kiosk.remove(id);
-    if (unit == null) {
-      return halt("attempting to transfer unknown "+ type, true);
-    }
-    kioskSupervisor.onRemove(this, id, unit, true);
-    return (ANY) unit;
+  public Integer add(Object value) {
+    if (kSupervisor.permit(Operation.ADD_KEY, null))
+      return kStorage.add(value);
+    throw new Fault(new IllegalAccessError());
   }
 
-  final public long size() { return size; }
-  final public long length() { return kiosk.size(); }
-  final public double loadFactor() {
-    double units = size;
-    return  (size / length());
+  public void delete(Object key) {
+    if (kSupervisor.permit(Operation.DELETE_KEY, valueOf(key)))
+      kStorage.delete(valueOf(key));
+    throw new Fault(new IllegalAccessError());
+  }
+
+  public <ANY> ANY transfer(Object key) {
+    if (kSupervisor.permit(Operation.TRANSFER_KEY, valueOf(key)))
+      return valueOf(kStorage.transfer(valueOf(key)));
+    throw new Fault(new IllegalAccessError());
+  }
+
+  public <ANY> ANY[] listKeys() {
+    if (kSupervisor.permit(Operation.LIST_KEYS, null))
+      return valueOf(kStorage.listKeys());
+    throw new Fault(new IllegalAccessError());
+  }
+
+  public boolean existingKey(Object key) {
+    if (kSupervisor.permit(Operation.CHECK_KEY, valueOf(key)))
+      return kStorage.exists(valueOf(key));
+    throw new Fault(new IllegalAccessError());
   }
 
 }

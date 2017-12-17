@@ -65,7 +65,7 @@ XPR.JSON.Plus.XML.Kit: XPR.JSON.Plus.XML.Kit is the support for converting betwe
 
 XPR.JSON.Plus.XML.Compiler: XPR.JSON.Plus.XML.Compiler extends XPR.JSON.Compiler for parsing XML text.
 
-Java "Properties" File Convertor support was dropped. XPR.Configuration is the
+Java "Properties" File Converter support was dropped. XPR.Configuration is the
 correct functionality for such a feature.
 
 Unit tests are maintained in a separate project. Contributing developers can test 
