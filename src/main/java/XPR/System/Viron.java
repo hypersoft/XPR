@@ -137,4 +137,8 @@ public class Viron { private Viron(){};
 
   public static Integer getErrorStream() { return ios[2]; }
 
+  public static String getTemporaryFilesPath() {
+    return System.getProperty("java.io.tmpdir");
   }
+
+}
