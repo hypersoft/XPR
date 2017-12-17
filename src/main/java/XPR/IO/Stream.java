@@ -15,9 +15,9 @@ public class Stream {
     Closeable.class,        // 0 
     InputStream.class,      // 1
     OutputStream.class,     // 2
-    RandomAccessFile.class,  // 3
-    DataOutputStream.class,
-    DataInputStream.class,
+    RandomAccessFile.class, // 3
+    DataOutputStream.class, // 4
+    DataInputStream.class,  // 5
   };
   
   final static int INPUT_STREAM = 1, OUTPUT_STREAM = 2, RECORD_STREAM = 3,
@@ -223,11 +223,23 @@ public class Stream {
     }
   }
 
-  public static Integer readWholeStreamToBuffer(Integer id, int bufferSize)
+  public static Integer readWholeStreamToBuffer(Integer pointer, int bufferSize)
   {
+    Object stream = streamKiosk.get(pointer);
+    if (Plus.classMember(stream, streamType[RECORD_STREAM])) {
+      RandomAccessFile f = valueOf(stream);
+      try {
+        int length = valueOf(f.length() - f.getFilePointer());
+        byte[] data = new byte[length];
+        f.readFully(data);
+        return streamKiosk.add(data);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
     try {
       byte[] units = captureWholeReadingStream(
-        streamKiosk.transfer(id),
+        streamKiosk.transfer(pointer),
         bufferSize == 0 ? 1024 : bufferSize
       );
       return Buffer.add(units);
