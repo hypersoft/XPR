@@ -232,18 +232,19 @@ public class Stream {
         int length = valueOf(f.length() - f.getFilePointer());
         byte[] data = new byte[length];
         f.readFully(data);
-        return streamKiosk.add(data);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+        return Buffer.add(data);
+      } catch (Exception e) { throw new Fault(e); }
     }
-    try {
-      byte[] units = captureWholeReadingStream(
-        streamKiosk.transfer(pointer),
-        bufferSize == 0 ? 1024 : bufferSize
-      );
-      return Buffer.add(units);
-    } catch (Exception e) {throw new Fault(e);}
+    if (Plus.classMember(stream, streamType[INPUT_STREAM])) {
+      try {
+        byte[] units = captureWholeReadingStream(
+          streamKiosk.transfer(pointer),
+          bufferSize == 0 ? 1024 : bufferSize
+        );
+        return Buffer.add(units);
+      } catch (Exception e) {throw new Fault(e);}
+    }
+    throw new Fault(new UnsupportedOperationException());
   }
 
   public static class Pipes {
