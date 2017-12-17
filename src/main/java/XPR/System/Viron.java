@@ -1,8 +1,11 @@
 package XPR.System;
 
+import XPR.Fault;
 import XPR.Plus;
 
+import java.io.File;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystemException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,4 +70,29 @@ public class Viron { private Viron(){};
     public static final Charset getSystemCharSet() {
       return Charset.defaultCharset();
     }
+
+    static private final String javaWorkingDirectory = java.lang.System.getProperty("user.dir");
+    static private String cwd = javaWorkingDirectory;
+
+    static public boolean currentWorkingDirectoryConflict() {
+      return ! cwd.equals(javaWorkingDirectory);
+    }
+
+    static public void resetCurrentWorkingDirectory() {
+      cwd = javaWorkingDirectory;
+    }
+
+    public static String getCurrentWorkingDirectory() {
+      return cwd;
+    }
+
+    static public void setCurrentWorkingDirectory(String path) {
+      File f = new File(path);
+      if (! f.isAbsolute() && currentWorkingDirectoryConflict())
+        f = new File(cwd, path);
+      if (! f.isDirectory())
+        throw new Fault(new FileSystemException("cannot change directory; file not found"));
+      cwd = f.getAbsolutePath();
+    }
+
   }
