@@ -171,6 +171,7 @@ public class Stream {
     if (Plus.classMember(stream, DATA_STREAM_OUT)) {
       DataOutputStream dest = valueOf(stream);
       dest.write(Buffer.get(out));
+      if (flush) dest.flush();
       return;
     }
     throw new Fault(new UnsupportedOperationException());
