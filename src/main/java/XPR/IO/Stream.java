@@ -5,8 +5,9 @@ import XPR.Kiosk;
 import XPR.Plus;
 
 import java.io.*;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
-import static XPR.Plus.classMember;
 import static XPR.Plus.valueOf;
 
 public class Stream {
@@ -53,7 +54,7 @@ public class Stream {
   }, new Kiosk.Storage.Type.RandomPointerMap(){
     @Override
     public Integer add(Object value) {
-      if (classMember(value, streamType))
+      if (Plus.classMember(value, streamType))
         return super.add(value);
       throw new Fault(new IllegalAccessException());
     }
@@ -86,7 +87,7 @@ public class Stream {
         throw new Fault(e);
       }
     }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static void bookmarkReadingStream(Integer pointer, int readlimit) {
@@ -96,7 +97,7 @@ public class Stream {
       source.mark(readlimit);
       return;
     } catch (Exception e) { throw new Fault(e); }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static void resetReadingStream(Integer pointer) {
@@ -106,7 +107,7 @@ public class Stream {
       source.reset();
       return;
     } catch (IOException e) { throw new Fault(e); }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static boolean canBookmarkReadingStream(Integer pointer) {
@@ -135,7 +136,7 @@ public class Stream {
       DataInputStream database = valueOf(stream);
       return database.read(Buffer.get(in));
     }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static void flushWritingStream(Integer pointer)
@@ -150,7 +151,7 @@ public class Stream {
       }
       return;
     }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static void write(Integer pointer, Integer out, boolean flush) throws IOException, IllegalAccessException
@@ -174,7 +175,7 @@ public class Stream {
       if (flush) dest.flush();
       return;
     }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static void closeStream(Integer id) { streamKiosk.delete(id); }
@@ -212,7 +213,7 @@ public class Stream {
     }
     if (Plus.classMember(stream, RECORD_STREAM))
       return pointer;
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   private static byte[] captureWholeReadingStream(InputStream is, int initialBufferCapacity) throws IOException {
@@ -265,7 +266,7 @@ public class Stream {
         return Buffer.add(units);
       } catch (Exception e) {throw new Fault(e);}
     }
-    throw new Fault(new UnsupportedOperationException());
+    throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static class Pipes {
@@ -295,5 +296,42 @@ public class Stream {
         public ReadingPipe(WritingPipe d) throws IOException {super(d);}
       }
     }
+  }
+
+  public static class Compression { private Compression(){}
+
+    public static class Zip { private Zip(){}
+
+      public Integer startZipOutputStream(Integer outputstream) {
+        Object stream = get(outputstream);
+        if (Plus.classMember(stream, WRITING_STREAM)) try {
+          GZIPOutputStream gz = new GZIPOutputStream(valueOf(stream));
+          return add(gz);
+        } catch (Exception e) { throw new Fault(e); }
+        throw new Fault.WrongStreamType(stream.getClass().getName());
+      }
+
+      public void endZipOutputStream(Integer pointer) {
+        Object stream = get(pointer);
+        if (Plus.classMember(stream, GZIPOutputStream.class)) {
+          GZIPOutputStream gz = valueOf(stream);
+          try {
+            gz.finish();
+            return;
+          } catch (Exception e) { throw new Fault(e); }
+        }
+        throw new Fault.WrongStreamType(stream.getClass().getName());
+      }
+
+      public Integer getZipInputStream(Integer inputstream) {
+        Object stream = get(inputstream);
+        if (Plus.classMember(stream, READING_STREAM)) try {
+          GZIPInputStream gz = new GZIPInputStream(valueOf(stream));
+          return add(gz);
+        } catch (Exception e) { throw new Fault(e); }
+        throw new Fault.WrongStreamType(stream.getClass().getName());
+      }
+    }
+
   }
 }

@@ -63,4 +63,56 @@ public class Fault extends RuntimeException {
     return kiosk.existingKey(code);
   }
 
+  public static class WrongParameterType extends Fault {
+    public WrongParameterType() {
+      super();
+    }
+
+    public WrongParameterType(Throwable e) {
+      super(e);
+    }
+
+    public WrongParameterType(String message) {
+      super(message);
+    }
+
+    public WrongParameterType(String message, Throwable e) {
+      super(message, e);
+    }
+
+    public WrongParameterType(String message, int code) {
+      super(message, code);
+    }
+
+    public WrongParameterType(int code) {
+      super(code);
+    }
+  }
+
+  public static class WrongStreamType extends Fault {
+    public WrongStreamType() {
+      super();
+    }
+
+    public WrongStreamType(Throwable e) {
+      super(e);
+    }
+
+    public WrongStreamType(String message) {
+      super(message);
+    }
+
+    public WrongStreamType(String message, Throwable e) {
+      super(message, e);
+    }
+
+    public WrongStreamType(String message, int code) {
+      super(message, code);
+    }
+
+    public WrongStreamType(int code) {
+      super(code);
+    }
+  }
+
 }
