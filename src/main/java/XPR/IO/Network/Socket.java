@@ -1,5 +1,7 @@
 package XPR.IO.Network;
 
+// Good data: http://tutorials.jenkov.com/java-networking/index.html
+
 import XPR.Fault;
 import XPR.IO.Stream;
 
