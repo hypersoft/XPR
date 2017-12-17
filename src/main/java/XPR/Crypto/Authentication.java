@@ -36,7 +36,7 @@ final public class Authentication {
           md = MessageDigest.getInstance(cipher);
           return valueOf(md.digest(bytes));
         } catch (Exception e) {
-          throw new RuntimeException(e);
+          throw new Fault(e);
         }
       }
       @Override

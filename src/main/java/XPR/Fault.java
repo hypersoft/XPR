@@ -14,14 +14,14 @@ public class Fault extends RuntimeException {
   static private Kiosk getSession() {
     kiosk = new Kiosk(new Kiosk.Supervisor(){
       @Override
-      public boolean permit(Kiosk.Operation operation, Object id) {
+      public boolean permit(Kiosk.Operation operation, Object key) {
         switch (operation) {
-          case SET_KEY: if (kiosk.existingKey(id)) {
+          case SET_KEY: if (kiosk.existingKey(key)) {
             throw new Fault(
               "cannot synchronize fault code message"
                 + Speak.quoteAnd("the key")
-                + Speak.quoteCitation(id) + " exists as"
-                + Speak.quoteExactTarget(kiosk.get(id))
+                + Speak.quoteCitation(key) + " exists as"
+                + Speak.quoteExactTarget(kiosk.get(key))
             );
           } else return true;
           case CHECK_KEY:

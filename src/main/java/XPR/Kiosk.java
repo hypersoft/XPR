@@ -9,16 +9,18 @@ import static XPR.Plus.valueOf;
 public class Kiosk {
 
   public enum Operation {
-    ADD_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, LIST_KEYS
+    ADD_KEY, DELETE_KEY, GET_KEY, SET_KEY, CHECK_KEY, TRANSFER_KEY, CHECK_LENGTH, LIST_KEYS
   }
 
   public static class Supervisor {
 
     final static Supervisor nullSuperVisor = new Supervisor();
 
-    public boolean permit(Operation operation, Object id) {
+    public boolean permit(Operation operation, Object key) {
       return true;
     }
+    protected void onAdded(Object key, Object value) {}
+    protected void onRemoved(Object key, Object value, boolean transfer) {}
 
   }
 
@@ -31,11 +33,12 @@ public class Kiosk {
     public abstract VTYPE transfer(KTYPE key);
     public abstract KTYPE[] listKeys();
     public abstract boolean exists(KTYPE key);
+    public abstract int length();
 
     public static class Type {
 
       public static class RandomPointerMap<VTYPE> extends Storage<Integer, VTYPE>{
-        private HashMap<Integer, Object> store = new HashMap<>();
+        protected HashMap<Integer, Object> store = new HashMap<>();
         private Integer generateKey() {
           Integer key; while (store.containsKey(
             key = Math.getRandomInteger(1024, Integer.MAX_VALUE)
@@ -59,6 +62,8 @@ public class Kiosk {
         public Integer[] listKeys() { return new Integer[0]; }
         @Override
         public boolean exists(Integer key) { return store.containsKey(key); }
+        @Override
+        public int length() { return store.size(); }
 
       }
     }
@@ -86,8 +91,10 @@ public class Kiosk {
   }
 
   public void set(Object key, Object value) {
-    if (kSupervisor.permit(Operation.SET_KEY, valueOf(key)))
+    if (kSupervisor.permit(Operation.SET_KEY, valueOf(key))) {
       kStorage.set(valueOf(key), value);
+      kSupervisor.onAdded(key, value);
+    }
     else throw new Fault(new IllegalAccessError());
   }
 
@@ -98,14 +105,19 @@ public class Kiosk {
   }
 
   public void delete(Object key) {
-    if (kSupervisor.permit(Operation.DELETE_KEY, valueOf(key)))
-      kStorage.delete(valueOf(key));
+    if (kSupervisor.permit(Operation.DELETE_KEY, valueOf(key))) {
+      Object value = kStorage.transfer(valueOf(key));
+      kSupervisor.onRemoved(key, value, false);
+    }
     else throw new Fault(new IllegalAccessError());
   }
 
   public <ANY> ANY transfer(Object key) {
-    if (kSupervisor.permit(Operation.TRANSFER_KEY, valueOf(key)))
-      return valueOf(kStorage.transfer(valueOf(key)));
+    if (kSupervisor.permit(Operation.TRANSFER_KEY, valueOf(key))) {
+      Object value = kStorage.transfer(valueOf(key));
+      kSupervisor.onRemoved(key, value, true);
+      return valueOf(value);
+    }
     throw new Fault(new IllegalAccessError());
   }
 
@@ -118,6 +130,12 @@ public class Kiosk {
   public boolean existingKey(Object key) {
     if (kSupervisor.permit(Operation.CHECK_KEY, valueOf(key)))
       return kStorage.exists(valueOf(key));
+    throw new Fault(new IllegalAccessError());
+  }
+
+  public int length() {
+    if (kSupervisor.permit(Operation.CHECK_LENGTH, null))
+      return kStorage.length();
     throw new Fault(new IllegalAccessError());
   }
 
