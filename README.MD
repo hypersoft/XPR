@@ -100,7 +100,7 @@ Nearly everything in user-land is first-class in XPR, which means
 <code>TitleCaseNamingConventions</code>, and <code>Hierarchial.Context.Class.Nesting</code>. What is not first-class? Auxilliary
 support. (Primitive = Simple = Portable) Constants are <code>JUMBO_CASE</code>. 
 Getters/Setters and instance[=structured-class-data]-storage-variables are 
-<code>camelCase</code>. Lastly, abbreviations = known-compound-word-briefs are SUPERCASE such as in <code>XPR</code>.
+<code>camelCase</code> if the class-data is not a Singleton[=first-class-variable]. Lastly, abbreviations = known-compound-word-briefs are SUPERCASE such as in <code>XPR</code>.
 <br>
 <br>
 <small><cite>commentary</cite></small><br>
