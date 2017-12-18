@@ -149,7 +149,7 @@ the beginning of a word, If the root-word is longer than three letters without s
     [which violates the value of the conveyance = (word being constructed): meaning ambiguous = without-certainty = lacking-clarity: mathematically-random-data]
     
 
-Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adjectives, pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
+Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adverbs, adjectives] and psuedo-facts[=pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
 In our theorhetical software writing cause, we are using a 
 fact-calculation-contrivance (that is to say: computer and software coding tools) 
 which has its own sentence grammars within this domain of code-writing, and 
