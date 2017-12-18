@@ -1,5 +1,6 @@
 package XPR.IO;
 
+import XPR.DeadBug;
 import XPR.Fault;
 import XPR.Kiosk;
 import XPR.Plus;
@@ -190,6 +191,7 @@ public class Stream {
     }
   }
   
+  @DeadBug("OBL_UNSATISFIED_OBLIGATION")
   public static Integer getFileReadingStream(String file) throws
     FileNotFoundException
   {
@@ -198,6 +200,7 @@ public class Stream {
     return streamKiosk.add(x);
   }
 
+  @DeadBug("OBL_UNSATISFIED_OBLIGATION")
   public static Integer getFileWritingStream(String file) throws
     FileNotFoundException
   {

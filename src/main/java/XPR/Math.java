@@ -8,7 +8,7 @@ public class Math { private Math(){}
     return ThreadLocalRandom.current().nextInt(min, max + 1);
   }
 
-  static public long getRandomLong(Integer min, Integer max) {
+  static public long getRandomLong(long min, long max) {
     if (max == Long.MAX_VALUE) --max;
     return ThreadLocalRandom.current().nextLong(min, max + 1);
   }
