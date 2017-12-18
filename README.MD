@@ -132,7 +132,7 @@ word. Modification logically means not the fact. Some words start with void-fixe
 is a quick code sample you should study. <code>Input</code> = <code>InPut</code> the correct word form and software-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
 For any combination of nouns, the formal-correct-spelling is with the hyphenation of the words, thusly forming a single-compound-word = <code>SingleCompoundWord, singleCompoundWord or SINGLE_COMPOUND_WORD</code> because hyphenation is forbidden by most software-coding-language-tools.
 
-Words like "com" are commonly considerable as "prefix words", but com doesn't mean modification, com means "with", Such as in Community, Computer, Compound. Words which subtract from the meaning must possess
+Words like "com" are commonly considerable as "prefix words", but com doesn't mean negative modification, com means "with", Such as in Community, Computer, Compound. Words which subtract from the meaning must possess
 a negative value, such as in delete, recycle, or unlink; all of which mean perform file (refuse = trashing) methods.
 
 In addition to void fixes there are void: (Vowel and Syllable)-compositions for 
