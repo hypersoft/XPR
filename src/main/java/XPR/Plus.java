@@ -135,4 +135,15 @@ public class Plus { private Plus(){};
     return data.isArray();
   }
 
+  public static <T> T valueNotNull(T value) {
+    if (value == null)
+      throw new Fault(new NullPointerException());
+    return value;
+  }
+
+  public static <T> T valueNotNull(T value, T fallback) {
+    if (value == null) return fallback;
+    return value;
+  }
+
 }

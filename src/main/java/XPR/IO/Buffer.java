@@ -37,6 +37,7 @@ public class Buffer {
         case TRANSFER_KEY:
         case DELETE_KEY:
         case ADD_KEY: return true;
+        default: break;
       }
       return false;
     }
