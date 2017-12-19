@@ -154,7 +154,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     sovereign
     honorable
     with the lack of culturing
-    beyond possiblity
+    beyond the scope of comprehensive possiblity
     operating with the support of a fact
     many meanings: mental-impairment, elementary, behind, etc.
     lacking the symptons of a model diagnosis
