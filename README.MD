@@ -173,7 +173,7 @@ positive; and we know the "process" is a negative-performance-pledge]]. Some wor
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
 means to modify a (offer = clination) negatively), but those words have no 
 fixation. Here is a quick code sample you should study.
- <code>Input</code> = <code>InPut</code> = <code>[in = prefix =]not-put</code> the correct-word-form and 
+ <code>Input</code> = <code>InPut</code> = <code>([in = prefix =]not)-put</code> the correct-word-form and 
  software-variant-label-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
 For any combination of nouns, the formal-correct-spelling is with the 
 hyphenation of the words, thusly forming a 
