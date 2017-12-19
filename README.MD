@@ -127,7 +127,7 @@ get any simpler than that last paragraph.
 <br><br>
 <cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
 Generally in logical Aenglish word construction 
-<code>/^(pr[aeiou]|in|ir|im|un|de|re|a)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
+<code>/^(pr[aeiou]|in|ir|im|il|un|de|re|a)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
 the "prefix" is voiding the fact of the following word with the negative modification of the
 word, with no closure for the fact = (+/- = plus or minus [the value of the following fact/fiction/ideal = (+/- = plus or minus [the value of any following suffix = (+/- = plus or minus)])=random-(verb-function=word-hashing=cryptogram)]):
     
@@ -136,6 +136,7 @@ word, with no closure for the fact = (+/- = plus or minus [the value of the foll
     independent
     irresponsible
     immature
+    illegal
     unlikely
     dependent
     retarded
@@ -154,6 +155,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     sovereign
     lacking[=without] honor
     with the lack of culturing
+    beyond the scope of the rules [(leg = legis + al = contract) = written-contract]
     beyond the scope of comprehensive possiblity
     operating with the support of a fact
     many meanings: lacking-cognitive-capacity, elementary, behind, pri-m-itive = basic[pri = of the first, m = model, itive = class-data: facts; with the wrong specification for class; correction: (base + ic = first-class-model) = basic], (etc. = ...)
