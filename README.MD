@@ -131,7 +131,7 @@ Generally in logical Aenglish word construction
 the "prefix" is voiding the fact of the following word with the negative modification of the
 word, with no closure for the fact = (+/- = plus or minus [the value of the following fact/fiction/ideal = (+/- = plus or minus [the value of any following suffix = (+/- = plus or minus)])=random-(verb-function=word-hashing=cryptogram)]):
     
-    (1)   process
+    (1-o)   process
     (1-e) prefix 
     (2)   independent
     (3)   irresponsible
@@ -150,7 +150,7 @@ Lack of certainty is not logical.
 
 For good measure, here is a correct conveyance for the logic of the foregoing terms:
 
-    (1)   system
+    (1-o) system
     (1-e) fixation 
     (2)   sovereign
     (3)   lacking[=without] honor
