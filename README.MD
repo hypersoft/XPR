@@ -150,7 +150,7 @@ Lack of certainty is not logical. [=: no-certainty = (not + logical) = negative-
 
 For good-measure, here is a correct-conveyance for the logic of the foregoing-terms:
 
-    (1-o) system, contrivance, plan, software, methods, (etc. = ...)
+    (1-o) system, contrivance, plan, software, methods, operations, (etc. = ...)
     (1-e) fixation 
     (2)   sovereign
     (3)   lacking[=without] honor
