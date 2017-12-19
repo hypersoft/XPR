@@ -126,27 +126,43 @@ correct-word-construction.
 get any simpler than that last paragraph.
 <br><br>
 <cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
-Generally in logical Aenglish word construction <code>/^(pr[aeiou]|in|un|de|re)*$/i</code> are void constructions because the
-"prefix" is voiding the fact of the following word with the negative modification of the
-word. Modification logically means not the fact. Some words start with void-fixes like (refuse; with the meaning of garbage or trash, rather than "decline"(which means to modify a (offer = clination) negatively), but those words have no fixation. Here
-is a quick code sample you should study. <code>Input</code> = <code>InPut</code> the correct word form and software-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
-For any combination of nouns, the formal-correct-spelling is with the hyphenation of the words, thusly forming a single-compound-word = <code>SingleCompoundWord, singleCompoundWord or SINGLE_COMPOUND_WORD</code> because hyphenation is forbidden by most software-coding-language-tools.
+Generally in logical Aenglish word construction 
+<code>/^(pr[aeiou]|in|ir|im|un|de|re)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions)because
+the "prefix" is voiding the fact of the following word with the negative modification of the
+word. Modification logically means not the fact. Some words start with void-fixes 
+like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
+means to modify a (offer = clination) negatively), but those words have no 
+fixation. Here is a quick code sample you should study.
+ <code>Input</code> = <code>InPut</code> the correct word form and 
+ software-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
+For any combination of nouns, the formal-correct-spelling is with the 
+hyphenation of the words, thusly forming a 
+<code>single-compound-word</code> = 
+ <code>SingleCompoundWord, singleCompoundWord or SINGLE_COMPOUND_WORD</code> 
+ because hyphenation is forbidden by most software-coding-language-tools.
 
-Words like "com" are commonly considerable as "prefix words", but com doesn't mean negative modification, com means "with", Such as in Community, Computer, Compound. Words which subtract from the meaning must possess
-a negative value, such as in delete, recycle, or unlink; all of which mean perform file (refuse = trashing) methods.
+Words like "com" are commonly considerable as "prefix words", but com doesn't 
+mean negative modification, com means "with", Such as in Community, Computer, or
+Compound. Words which subtract from the meaning must possess a negative-fact-sum
+, such as in delete, recycle, or unlink; all of which mean perform file 
+(refuse = trashing) methods.
 
 In addition to void fixes there are void: (Vowel and Syllable)-compositions for 
-the beginning of a word, If the root-word is longer than three letters without suffixation:
+the beginning of a word:
  
-    (1) if the word in question starts with a vowel,
+    (1) If the root-word is longer than three letters [without suffixation ]and
+        if the word in question starts with a vowel:
        
-        (a) the third letter of the root-word must also be a vowel if the second-letter of the root-word is not a vowel;
+        (a) the third letter of the root-word must also be a vowel if the 
+            second-letter of the root-word is not a vowel;
   
-        (b) the first vowel of the root-word cannot be followed by a phonetic-[e]nunciation-break. [such as in E-nunciation]
+        (b) the first vowel of the root-word cannot be followed by a 
+            phonetic-[e]nunciation-break. [such as in E-nunciation]
         
     [vow: means to pledge; el: means contract; and a contract must be a known fact]
     [these word constructions violate the (syllable/consonant)-grammar-contracts[=word-meanings of syllable and consonant];]
     [which violates the value of the conveyance = (word being constructed): meaning ambiguous = without-certainty = lacking-clarity: mathematically-random-data]
+    [otherwise: pledging a void contract = fictional-fact-statement]
     
 
 Correct sentence grammar construction, time-modification-words, and fact-modification-words[=adverbs, adjectives] and psuedo-facts[=pronouns] are beyond the scope of this documentation, as well as our goal of keeping the documentation "available for standard english readers".
