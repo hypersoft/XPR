@@ -176,7 +176,7 @@ hyphenation of the words, thusly forming a
 Words like "com" are commonly considerable as "prefix words", but com doesn't 
 mean negative modification, com means "with", Such as in Community, Computer, or
 Compound. Words which subtract from the meaning must possess a negative-fact-sum
-, such as in delete, recycle, or unlink; all of which mean perform file 
+, such as in delete, recycle, or unlink; all of which [commonly within the computing domain] mean perform file 
 (refuse = trashing) methods.
 
 In addition to void fixes there are void: (Vowel and Syllable)-compositions for 
