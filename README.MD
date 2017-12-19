@@ -208,7 +208,7 @@ not a vowel.
 It also helps to tell you that you can construct your words however you want if 
 you give the correct meaning for the (incorrect = wrong) term; no closure of terms
 in matters of logic, means no logical contract/comprehension/knowledge of a fact.
-The Human Mind, also has its own term mapping features. This commentary has 
+The Human Mind, <strikeout>also</strikeout> has its own term mapping features. This commentary has 
 been about correctly operating those features in the context of computational 
 [high-order] logic language [extensions] for software (development = coding).
 <hr>
