@@ -129,7 +129,7 @@ get any simpler than that last paragraph.
 Generally in logical Aenglish word construction 
 <code>/^(pr[aeiou]|in|ir|im|un|de|re|a)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
 the "prefix" is voiding the fact of the following word with the negative modification of the
-word, with no closure for the fact = +/-:
+word, with no closure for the fact = (+/- = plus or minus [the value of the following fact/fiction/ideal = (+/- = plus or minus)=random-verb-function]):
     
     process
     prefix 
