@@ -147,6 +147,18 @@ word, with no closure for the fact = +/-:
 Lack of certainty is not logical.
 </small>
 
+For good measure, here is a correct conveyance for the logic of the foregoing terms:
+
+    system
+    fixation 
+    sovereign
+    honorable
+    with the lack of culturing
+    beyond possiblity
+    operating with the support of a fact
+    many meanings: mental-impairment, elementary, behind, etc.
+    lacking the symptons of a model diagnosis
+
 Modification-logically-means: not the fact is the sum. Some words start with void-fixes 
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
 means to modify a (offer = clination) negatively), but those words have no 
