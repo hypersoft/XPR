@@ -159,7 +159,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
             = written-contract]) [beyond the scope of the rules is a tort]
           = correction: violation/violating 
             = (done/doing: a wrong-known within the rules)
-    (6)   beyond the scope of comprehensive possiblity
+    (6)   beyond the scope of comprehensive possiblity (minutiae)
     (7)   operating with the support of a fact
     (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
             pri-m-itive 
