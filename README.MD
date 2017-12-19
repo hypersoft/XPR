@@ -156,9 +156,9 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     (3)   lacking[=without] honor
     (4)   with the lack of culturing
     (5)   beyond the scope of the (rules [(leg = legis + al = contract)
-            = written-contract]) 
-          = violation/violating 
-            = (done/doing: a known wrong within the rules)
+            = written-contract]) [beyond the scope of the rules is a tort]
+          = correction: violation/violating 
+            = (done/doing: a wrong-known within the rules)
     (6)   beyond the scope of comprehensive possiblity
     (7)   operating with the support of a fact
     (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
