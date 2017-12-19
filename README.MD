@@ -158,6 +158,8 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     operating with the support of a fact
     many meanings: lacking-cognitive-capacity, elementary, behind, etc.
     lacking the symptons of a model diagnosis
+    
+The "unhashing" of the words is a technical-art of [en]vironmental-circumstances.
 
 Modification-logically-means: not the fact is the sum. Some words start with void-fixes 
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
