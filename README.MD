@@ -150,7 +150,7 @@ Lack of certainty is not logical.
 
 For good measure, here is a correct conveyance for the logic of the foregoing terms:
 
-    (1-o) system
+    (1-o) system, system, plan, software, methods, (etc. = ...)
     (1-e) fixation 
     (2)   sovereign
     (3)   lacking[=without] honor
@@ -166,7 +166,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
             = basic[(pri = of the first) + (m = model) + (itive = (class-data: facts)); 
                 = (with = +) the ((wrong specification for class) = (pri = negative) = subtract); [=: (+= negative-sum)-operation = subtraction]
                 = correction: ((base = first) + (ic = class-model) = first-class-model) = basic], 
-            (etc. = ...)
+            ...
     (9)   lacking the symptons of a model diagnosis
     
 The "unhashing" = backward-hash-ciphering of the hashed-words is a learned-skill
