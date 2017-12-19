@@ -159,7 +159,12 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     many meanings: lacking-cognitive-capacity, elementary, behind, etc.
     lacking the symptons of a model diagnosis
     
-The "unhashing" = backward-hash-ciphering of the hashed-words is a learned-skill = technical-art of [en]vironmental-circumstances.
+The "unhashing" = backward-hash-ciphering of the hashed-words is a learned-skill
+= technical-art of [en]vironmental-circumstances. This works the same way any
+heuristics based cipher cracking methodology works, but of course, you cannot
+crack the ciphers if you don't know the words are random-verb-ciphers. Sometimes
+there is a table of data given in transmission, where the actual solution is
+found = (closure of terms).
 
 negative-word-modification-logically-means: not[ the or: a] fact is the 
 sum[=fiction; [complementing our foregoing tables: 
