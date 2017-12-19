@@ -148,7 +148,7 @@ word, with no closure for the fact = (+/- = plus or minus [the value of the foll
 Lack of certainty is not logical. [=: no-certainty = (not + logical) = negative-sum-operation = (subtraction as an addition = false-operation: fault = break: condition: false-fact-calculations: fact + fiction = fiction (through infinity=(no-(meaning-state = known-valuation): forever))]
 </small>
 
-For good measure, here is a correct conveyance for the logic of the foregoing terms:
+For good-measure, here is a correct-conveyance for the logic of the foregoing-terms:
 
     (1-o) system, system, plan, software, methods, (etc. = ...)
     (1-e) fixation 
