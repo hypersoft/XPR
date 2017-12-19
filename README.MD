@@ -156,7 +156,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     with the lack of culturing
     beyond the scope of comprehensive possiblity
     operating with the support of a fact
-    many meanings: mental-impairment, elementary, behind, etc.
+    many meanings: lacking-cognitive-capacity, elementary, behind, etc.
     lacking the symptons of a model diagnosis
 
 Modification-logically-means: not the fact is the sum. Some words start with void-fixes 
