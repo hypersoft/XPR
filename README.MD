@@ -127,9 +127,27 @@ get any simpler than that last paragraph.
 <br><br>
 <cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
 Generally in logical Aenglish word construction 
-<code>/^(pr[aeiou]|in|ir|im|un|de|re)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
+<code>/^(pr[aeiou]|in|ir|im|un|de|re|a)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
 the "prefix" is voiding the fact of the following word with the negative modification of the
-word. Modification-logically-means: not the fact is the sum. Some words start with void-fixes 
+word, with no closure for the fact = +/-:
+    
+    process
+    prefix 
+    independent
+    irresponsible
+    immature
+    unlikely
+    dependent
+    retarded
+    asymptomological
+
+<small>
+<i>The void pr is with the cause of wrong vowel and syllable speech-[e-]jection[= (putting forth)/(taking with)]</i>.
+
+Lack of certainty is not logical.
+</small>
+
+Modification-logically-means: not the fact is the sum. Some words start with void-fixes 
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
 means to modify a (offer = clination) negatively), but those words have no 
 fixation. Here is a quick code sample you should study.
