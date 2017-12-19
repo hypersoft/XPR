@@ -161,7 +161,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     
 The "unhashing" of the words is a technical-art of [en]vironmental-circumstances.
 
-negative-word-modification-logically-means: not [the = a] fact is the sum[=fiction]. Some words start with void-fixes 
+negative-word-modification-logically-means: not [the = a] fact is the sum[=fiction [using our foregoing tables: (not a system is a process) = BACKWARDS]]. Some words start with void-fixes 
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
 means to modify a (offer = clination) negatively), but those words have no 
 fixation. Here is a quick code sample you should study.
