@@ -131,16 +131,16 @@ Generally in logical Aenglish word construction
 the "prefix" is voiding the fact of the following word with the negative modification of the
 word, with no closure for the fact = (+/- = plus or minus [the value of the following fact/fiction/ideal = (+/- = plus or minus [the value of any following suffix = (+/- = plus or minus)])=random-(verb-function=word-hashing=cryptogram)]):
     
-    process
-    prefix 
-    independent
-    irresponsible
-    immature
-    illegal
-    unlikely
-    dependent
-    retarded
-    asymptomological
+    (1)   process
+    (1-e) prefix 
+    (2)   independent
+    (3)   irresponsible
+    (4)   immature
+    (5)   illegal
+    (6)   unlikely
+    (7)   dependent
+    (8)   retarded
+    (9)   asymptomological
 
 <small>
 <i>The void pr is with the cause of wrong vowel and syllable speech-[e-]jection[= (putting forth)/(taking with)]</i>.
@@ -150,16 +150,23 @@ Lack of certainty is not logical.
 
 For good measure, here is a correct conveyance for the logic of the foregoing terms:
 
-    system
-    fixation 
-    sovereign
-    lacking[=without] honor
-    with the lack of culturing
-    beyond the scope of the (rules [(leg = legis + al = contract) = written-contract]) = violation/violating = (done/doing: a known wrong within the rules)
-    beyond the scope of comprehensive possiblity
-    operating with the support of a fact
-    many meanings: lacking-cognitive-capacity, elementary, behind, pri-m-itive = basic[pri = of the first, m = model, itive = class-data: facts; with the wrong specification for class; correction: (base + ic = first-class-model) = basic], (etc. = ...)
-    lacking the symptons of a model diagnosis
+    (1)   system
+    (1-e) fixation 
+    (2)   sovereign
+    (3)   lacking[=without] honor
+    (4)   with the lack of culturing
+    (5)   beyond the scope of the (rules [(leg = legis + al = contract)
+            = written-contract]) 
+            = violation/violating 
+            = (done/doing: a known wrong within the rules)
+    (6)   beyond the scope of comprehensive possiblity
+    (7)   operating with the support of a fact
+    (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
+            pri-m-itive = basic[pri = of the first, m = model, itive 
+              = class-data: facts; 
+            with the wrong specification for class;
+            correction: (base + ic = first-class-model) = basic], (etc. = ...)
+    (9)   lacking the symptons of a model diagnosis
     
 The "unhashing" = backward-hash-ciphering of the hashed-words is a learned-skill
 = technical-art of [en]vironmental-circumstances. This works the same way any
