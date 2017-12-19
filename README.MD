@@ -163,8 +163,8 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     (7)   operating with the support of a fact
     (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
             pri-m-itive 
-            = basic[pri = of the first + m = model + itive = (class-data: facts); 
-                = with the wrong specification for class [pri];
+            = basic[(pri = of the first) + (m = model) + (itive = (class-data: facts)); 
+                = with the (wrong specification for class) = pri;
                 = correction: (base + ic = first-class-model) = basic], 
             (etc. = ...)
     (9)   lacking the symptons of a model diagnosis
