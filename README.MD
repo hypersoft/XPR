@@ -155,7 +155,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     sovereign
     lacking[=without] honor
     with the lack of culturing
-    beyond the scope of the rules [(leg = legis + al = contract) = written-contract]
+    beyond the scope of the rules [(leg = legis + al = contract) = written-contract] = violation = (a known wrong within the rules)
     beyond the scope of comprehensive possiblity
     operating with the support of a fact
     many meanings: lacking-cognitive-capacity, elementary, behind, pri-m-itive = basic[pri = of the first, m = model, itive = class-data: facts; with the wrong specification for class; correction: (base + ic = first-class-model) = basic], (etc. = ...)
