@@ -127,14 +127,14 @@ get any simpler than that last paragraph.
 <br><br>
 <cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
 Generally in logical Aenglish word construction 
-<code>/^(pr[aeiou]|in|ir|im|un|de|re)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions)because
+<code>/^(pr[aeiou]|in|ir|im|un|de|re)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
 the "prefix" is voiding the fact of the following word with the negative modification of the
-word. Modification logically means not the fact. Some words start with void-fixes 
+word. Modification-logically-means: not the fact is the sum. Some words start with void-fixes 
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
 means to modify a (offer = clination) negatively), but those words have no 
 fixation. Here is a quick code sample you should study.
- <code>Input</code> = <code>InPut</code> the correct word form and 
- software-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
+ <code>Input</code> = <code>InPut</code> the correct-word-form and 
+ software-variant-label-construction is <code>SourceData, sourceData or SOURCE_DATA</code>.
 For any combination of nouns, the formal-correct-spelling is with the 
 hyphenation of the words, thusly forming a 
 <code>single-compound-word</code> = 
@@ -173,7 +173,12 @@ all (notions = clinations = suggestions) of time are relative. Furthermore: Aeng
 starts with a vowel, doesn't continue with a vowel, and the third letter is 
 not a vowel.
 
-It also helps to tell you that you can construct your words however you want if you give the correct meaning for the (incorrect = wrong) term. The Human Mind, also has its own term mapping features. This commentary has been about correctly operating those features in the context of computational [high-order] logic language [extensions] for software (development = coding).
+It also helps to tell you that you can construct your words however you want if 
+you give the correct meaning for the (incorrect = wrong) term; no closure of terms
+in matters of logic, means no logical contract/comprehension/knowledge of a fact.
+The Human Mind, also has its own term mapping features. This commentary has 
+been about correctly operating those features in the context of computational 
+[high-order] logic language [extensions] for software (development = coding).
 <hr>
 <small><b>The Fine Print</b></small>
 <br><br>
