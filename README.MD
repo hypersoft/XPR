@@ -152,7 +152,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     system
     fixation 
     sovereign
-    honorable
+    lacking[=without] honor
     with the lack of culturing
     beyond the scope of comprehensive possiblity
     operating with the support of a fact
