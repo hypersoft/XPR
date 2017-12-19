@@ -156,7 +156,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     with the lack of culturing
     beyond the scope of comprehensive possiblity
     operating with the support of a fact
-    many meanings: lacking-cognitive-capacity, elementary, behind, (etc. = ...)
+    many meanings: lacking-cognitive-capacity, elementary, behind, pri-m-itive = basic[pri = of the first, m = model, itive = class-data: facts; with the wrong specification for class], (etc. = ...)
     lacking the symptons of a model diagnosis
     
 The "unhashing" = backward-hash-ciphering of the hashed-words is a learned-skill
