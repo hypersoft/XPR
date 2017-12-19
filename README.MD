@@ -131,7 +131,7 @@ Generally in logical Aenglish word construction
 the "prefix" is voiding the fact of the following word with the negative modification of the
 word, with no closure for the fact = (+/- = plus or minus [the value of the following fact/fiction/ideal = (+/- = plus or minus [the value of any following suffix = (+/- = plus or minus)])=random-(verb-function=word-hashing=cryptogram)]):
     
-    (1-o)   process
+    (1-o) process
     (1-e) prefix 
     (2)   independent
     (3)   irresponsible
