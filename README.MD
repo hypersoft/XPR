@@ -162,7 +162,7 @@ For good-measure, here is a correct-conveyance for the logic of the foregoing-te
     (6)   beyond the scope of comprehensive possiblity (minutiae)
     (7)   operating with the support of a fact
     (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
-            pri-m-itive 
+            (1-i) pri-m-itive 
             = basic[(pri = of the first) + (m = model) + (itive = (class-data: facts)); 
                 = (with = +) the ((wrong specification for class) = (pri = negative) = subtract); [=: (+= negative-sum)-operation = subtraction]
                 = correction: ((base = first) + (ic = class-model) = first-class-model) = basic],
