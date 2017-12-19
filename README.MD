@@ -158,14 +158,16 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     (5)   beyond the scope of the (rules [(leg = legis + al = contract)
             = written-contract]) 
             = violation/violating 
-            = (done/doing: a known wrong within the rules)
+              = (done/doing: a known wrong within the rules)
     (6)   beyond the scope of comprehensive possiblity
     (7)   operating with the support of a fact
     (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
-            pri-m-itive = basic[pri = of the first, m = model, 
-              itive = class-data: facts; 
-            with the wrong specification for class;
-            correction: (base + ic = first-class-model) = basic], (etc. = ...)
+            pri-m-itive 
+              = basic[pri = of the first, m = model, 
+                  itive = class-data: facts; 
+                = with the wrong specification for class [pri];
+                = correction: (base + ic = first-class-model) = basic], 
+            (etc. = ...)
     (9)   lacking the symptons of a model diagnosis
     
 The "unhashing" = backward-hash-ciphering of the hashed-words is a learned-skill
