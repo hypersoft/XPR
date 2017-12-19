@@ -161,7 +161,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     
 The "unhashing" of the words is a technical-art of [en]vironmental-circumstances.
 
-negative-word-modification-logically-means: not [the = a] fact is the sum[=fiction [using our foregoing tables: (not a system is a process) = BACKWARDS; a negative has no parity with a positive; and we know the "process" is a negative-performance-pledge]]. Some words start with void-fixes 
+negative-word-modification-logically-means: not [the = a] fact is the sum[=fiction [complementing our foregoing tables: (not a system is a process) = BACKWARDS; a negative has no parity with a positive; and we know the "process" is a negative-performance-pledge]]. Some words start with void-fixes 
 like (refuse; with the meaning of garbage or trash, rather than "decline"(which 
 means to modify a (offer = clination) negatively), but those words have no 
 fixation. Here is a quick code sample you should study.
@@ -208,7 +208,7 @@ not a vowel.
 It also helps to tell you that you can construct your words however you want if 
 you give the correct meaning for the (incorrect = wrong) term; no closure of terms
 in matters of logic, means no logical contract/comprehension/knowledge of a fact.
-The Human Mind, <strikeout>also</strikeout> has its own term mapping features. This commentary has 
+The Human Mind, ~~also~~ has its own term mapping features. This commentary has 
 been about correctly operating those features in the context of computational 
 [high-order] logic language [extensions] for software (development = coding).
 <hr>
