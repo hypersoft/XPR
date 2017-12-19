@@ -143,7 +143,7 @@ word, with no closure for the fact = (+/- = plus or minus [the value of the foll
     (9)   asymptomological
 
 <small>
-<i>The void pr is with the cause of wrong vowel and syllable speech-[e-]jection[= (putting forth)/(taking with)]</i>.
+<i>The void pr is with the cause of wrong vowel and syllable speech-[e-]jection[= (putting forth)/(taking with): CORRECT-KNOWLEDGE-VOCALIZATION]</i>.
 
 Lack of certainty is not logical.
 </small>
