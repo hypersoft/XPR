@@ -164,7 +164,7 @@ For good measure, here is a correct conveyance for the logic of the foregoing te
     (8)   many meanings: lacking-cognitive-capacity, elementary, behind, 
             pri-m-itive 
             = basic[(pri = of the first) + (m = model) + (itive = (class-data: facts)); 
-                = (with = +) the ((wrong specification for class) = (pri = negative) = subtract); [(+= -sum)-operation]
+                = (with = +) the ((wrong specification for class) = (pri = negative) = subtract); [(+= negative-sum)-operation]
                 = correction: ((base = first) + (ic = class-model) = first-class-model) = basic], 
             (etc. = ...)
     (9)   lacking the symptons of a model diagnosis
