@@ -158,7 +158,7 @@ word, with no closure for the fact = (+/- = plus or minus [the value of the foll
 
 For good-measure, here is a correct-conveyance for the logic of the foregoing-terms:
 
-    (1-o) system, contrivance, plan, software, methods, operations, schedule, routine, 
+    (1-o) system, contrivance, plan, software, methods, operations, routine, 
           (etc. = ... = continuous-list-generalization: 
             "so on [this list], and so forth [through a continual-listing of these general-types]")
     (1-e) fixation 
