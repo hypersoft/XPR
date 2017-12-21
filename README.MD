@@ -166,7 +166,7 @@ For good-measure, here is a correct-conveyance for the logic of the foregoing-te
             = basic[(pri = of the first) + (m = model) + (itive = (class-data: facts)); 
                 = (with = +) the ((wrong specification for class) = (pri = negative) = subtract); [=: (+= negative-sum)-operation = subtraction]
                 = correction: ((base = first) + (ic = class-model) = first-class-model) = basic],
-            re-verse = retro-act-i(on/ve) = backward-motion,
+            re-verse = (retro-act-i(on/ve) = backward)-motion,
             ...
     (9)   lacking the symptons of a model diagnosis
     
