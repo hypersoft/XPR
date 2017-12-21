@@ -145,12 +145,12 @@ word, with no closure for the fact = (+/- = plus or minus [the value of the foll
 <small>
 <i>The void pr is with the cause of wrong vowel and syllable speech-[e-]jection[= (putting forth)/(taking with): CORRECT-KNOWLEDGE-VOCALIZATION]</i>.
 
-Lack of certainty is not logical. [=: no-certainty = (not + logical) = negative-sum-operation 
- (if: subtraction as an addition:
-  false-operation: fault = break: condition: false-fact-calculations: 
-    fact + fiction = fiction (through infinity = (no-(meaning-state = known-valuation) = no contract for any semblance of a fact: forever): 
-      sum = (false not: true):
-        for the contract-type = negative-calculation (backwards fact modification: "facts won't add up"))]
+    Lack of certainty is not logical. [=: no-certainty = (not + logical) = negative-sum-operation 
+     (if: subtraction as an addition:
+      false-operation: fault = break: condition: false-fact-calculations: 
+        fact + fiction = fiction (through infinity = (no-(meaning-state = known-valuation) = no contract for any semblance of a fact: forever): 
+          sum = (false not: true):
+            for the contract-type = negative-calculation (backwards fact modification: "facts won't add up"))]
 </small>
 
 For good-measure, here is a correct-conveyance for the logic of the foregoing-terms:
