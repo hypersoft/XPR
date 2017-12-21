@@ -125,7 +125,7 @@ correct-word-construction.
 "What is in a name" [in terms of software-coding]; doesn't
 get any simpler than that last paragraph.
 <br><br>
-<cite><small>on correct-aenglish[=computational-logic: english]-langauge-word-construction</small></cite><br>
+<cite><small>on correct-[aenglish[=computational-logic: english]-langauge](computational-syntax-briefing.jpg)-word-construction</small></cite><br>
 Generally in logical Aenglish word construction 
 <code>/^(pr[aeiou]|in|ir|im|il|un|de|re|a)*$/i</code> are void-fact-word-constructions (word constructions with meaning-values of void-facts = fictions) because
 the "prefix" is voiding the fact of the following word with the negative modification of the

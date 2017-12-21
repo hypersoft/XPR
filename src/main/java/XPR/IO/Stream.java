@@ -263,10 +263,11 @@ public class Stream {
     }
     if (Plus.classMember(stream, READING_STREAM)) {
       try {
+        InputStream source = valueOf(stream);
         byte[] units = captureWholeReadingStream(
-          streamKiosk.transfer(pointer),
-          bufferSize == 0 ? 1024 : bufferSize
+          source, bufferSize == 0 ? 1024 : bufferSize
         );
+        streamKiosk.transfer(pointer);
         return Buffer.add(units);
       } catch (Exception e) {throw new Fault(e);}
     }
@@ -274,6 +275,19 @@ public class Stream {
   }
 
   public static class Pipes {
+    public static class Real {
+      public static class Pipe  {
+        java.nio.channels.Pipe p;
+        public Pipe() {
+          try {
+            p = java.nio.channels.Pipe.open();
+          } catch (IOException e) { throw new Fault(e);}
+        }
+        public OutputStream getWritingPipe() {
+          return p.sink().
+        }
+      }
+    }
     public static class Synthetic {
       public static class Pipe {
         public final WritingPipe writingPipe;
