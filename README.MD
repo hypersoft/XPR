@@ -150,7 +150,10 @@ word, with no closure for the fact = (+/- = plus or minus [the value of the foll
       false-operation: fault = break: condition: false-fact-calculations: 
         fact + fiction = fiction (through infinity = (no-(meaning-state = known-valuation) = no contract for any semblance of a fact: forever): 
           sum = (false not: true):
-            for the contract-type = negative-calculation (backwards fact modification: "facts won't add up with any lack of a correct-meaning"))]
+            for the contract-type = negative-calculation: 
+              (backwards-fact-modification: "facts won't add up with any lack of a correct-meaning")
+     )
+    ]
 </small>
 
 For good-measure, here is a correct-conveyance for the logic of the foregoing-terms:
