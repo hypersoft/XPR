@@ -6,6 +6,7 @@ import XPR.Kiosk;
 import XPR.Plus;
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -13,14 +14,14 @@ import static XPR.Plus.valueOf;
 
 public class Stream {
 
-  final static Class 
-    READING_STREAM = InputStream.class, 
+  final static Class
+    READING_STREAM = InputStream.class,
     WRITING_STREAM = OutputStream.class,
     RECORD_STREAM = RandomAccessFile.class,
-    DATA_STREAM_OUT = DataOutputStream.class, 
+    DATA_STREAM_OUT = DataOutputStream.class,
     DATA_STREAM_IN = DataInputStream.class;
 
-  final static Class[] streamType = new Class[] {
+  final static Class[] streamType = new Class[]{
     Closeable.class,        // 0 
     READING_STREAM,         // 1
     WRITING_STREAM,         // 2
@@ -28,17 +29,19 @@ public class Stream {
     DATA_STREAM_OUT,        // 4
     DATA_STREAM_IN,         // 5
   };
-  
-  
-  private static Kiosk streamKiosk = new Kiosk(new Kiosk.Supervisor(){
+
+
+  private static Kiosk streamKiosk = new Kiosk(new Kiosk.Supervisor() {
     @Override
     public boolean permit(Kiosk.Operation operation, Object key) {
       switch (operation) {
         case GET_KEY:
         case TRANSFER_KEY:
         case DELETE_KEY:
-        case ADD_KEY: return true;
-        default: break;
+        case ADD_KEY:
+          return true;
+        default:
+          break;
       }
       return false;
     }
@@ -46,14 +49,15 @@ public class Stream {
     @Override
     protected void onRemoved(Object key, Object value, boolean transfer) {
       Closeable stream = valueOf(value);
-      if (value instanceof Flushable) try { ((Flushable)stream).flush();
+      if (value instanceof Flushable) try {
+        ((Flushable) stream).flush();
       } catch (Exception e) {e.printStackTrace();}
       try {
-        if (! transfer) stream.close();
+        if (!transfer) stream.close();
       } catch (Exception e) {e.printStackTrace();}
     }
-    
-  }, new Kiosk.Storage.Type.RandomPointerMap(){
+
+  }, new Kiosk.Storage.Type.RandomPointerMap() {
     @Override
     public Integer add(Object value) {
       if (Plus.classMember(value, streamType))
@@ -120,7 +124,7 @@ public class Stream {
     }
     return false;
   }
-  
+
   public static int read(Integer pointer, Integer in) throws IOException,
     IllegalAccessException
   {
@@ -138,6 +142,14 @@ public class Stream {
       DataInputStream database = valueOf(stream);
       return database.read(Buffer.get(in));
     }
+    if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
+      Pipes.Synthetic.Pipe pipe = valueOf(stream);
+      return pipe.readingPipe.read(Buffer.get(in));
+    }
+    if (Plus.classMember(stream, Pipes.Real.Pipe.class)) {
+      Pipes.Real.Pipe pipe = valueOf(stream);
+      return pipe.source.read(ByteBuffer.wrap(Buffer.get(in)));
+    }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
@@ -153,10 +165,24 @@ public class Stream {
       }
       return;
     }
+    if (Plus.classMember(stream, Pipes.Real.Pipe.class)) {
+      Pipes.Real.Pipe pipe = valueOf(stream);
+      return;
+    }
+    if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
+      Pipes.Synthetic.Pipe pipe = valueOf(stream);
+      try {
+        pipe.writingPipe.flush();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return;
+    }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
-  public static void write(Integer pointer, Integer out, boolean flush) throws IOException, IllegalAccessException
+  public static void write(Integer pointer, Integer out,
+    boolean flush) throws IOException, IllegalAccessException
   {
     Object stream = (OutputStream) streamKiosk.get(pointer);
     if (Plus.classMember(stream, READING_STREAM)) {
@@ -177,11 +203,21 @@ public class Stream {
       if (flush) dest.flush();
       return;
     }
+    if (Plus.classMember(stream, Pipes.Real.Pipe.class)) {
+      Pipes.Real.Pipe pipe = valueOf(stream);
+      pipe.out.write(ByteBuffer.wrap(Buffer.get(out)));
+      return;
+    }
+    if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
+      Pipes.Synthetic.Pipe pipe = valueOf(stream);
+      pipe.writingPipe.write(Buffer.get(out));
+      return;
+    }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
   public static void closeStream(Integer id) { streamKiosk.delete(id); }
-  
+
   public static Integer getFileRecordStream(String path) {
     try {
       RandomAccessFile f = new RandomAccessFile(path, "rw");
@@ -190,7 +226,7 @@ public class Stream {
       throw new Fault(e);
     }
   }
-  
+
   @DeadBug("OBL_UNSATISFIED_OBLIGATION")
   public static Integer getFileReadingStream(String file) throws
     FileNotFoundException
@@ -220,14 +256,17 @@ public class Stream {
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
-  private static byte[] captureWholeReadingStream(InputStream is, int initialBufferCapacity) throws IOException {
+  private static byte[] captureWholeReadingStream(InputStream is,
+    int initialBufferCapacity) throws IOException
+  {
     if (initialBufferCapacity <= 0) {
-      throw new IllegalArgumentException("Bad initialBufferCapacity: " + initialBufferCapacity);
+      throw new IllegalArgumentException(
+        "Bad initialBufferCapacity: " + initialBufferCapacity);
     } else {
       byte[] buffer = new byte[initialBufferCapacity];
       int cursor = 0;
 
-      while(true) {
+      while (true) {
         int n = is.read(buffer, cursor, buffer.length - cursor);
         if (n < 0) {
           if (cursor != buffer.length) {
@@ -275,24 +314,60 @@ public class Stream {
   }
 
   public static class Pipes {
+
+    public static int createRealPipe() {
+      Real.Pipe pipe = new Real.Pipe();
+      return Stream.add(pipe);
+    }
+
+    public static int createSyntheticPipe() {
+      Synthetic.Pipe pipe = new Synthetic.Pipe();
+      return Stream.add(pipe);
+    }
+
     public static class Real {
-      public static class Pipe  {
-        java.nio.channels.Pipe p;
+      public static class Pipe implements Closeable {
+        private final java.nio.channels.Pipe p;
+        private final java.nio.channels.Pipe.SinkChannel out;
+        private final java.nio.channels.Pipe.SourceChannel source;
+
         public Pipe() {
           try {
             p = java.nio.channels.Pipe.open();
+            out = p.sink();
+            source = p.source();
           } catch (IOException e) { throw new Fault(e);}
         }
-        public OutputStream getWritingPipe() {
-          return p.sink().
+
+        public java.nio.channels.Pipe.SinkChannel getWritingPipe() {
+          return out;
+        }
+
+        public java.nio.channels.Pipe.SourceChannel getSource() {
+          return source;
+        }
+
+        @Override
+        public void close() {
+          try {
+            out.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+          try {
+            source.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
+
     public static class Synthetic {
-      public static class Pipe {
+      public static class Pipe implements Closeable {
         public final WritingPipe writingPipe;
         public final ReadingPipe readingPipe;
-        final int pointer[] = new int[2];
+
         public Pipe() {
           writingPipe = new WritingPipe();
           try {
@@ -300,56 +375,61 @@ public class Stream {
           } catch (IOException e) {
             throw new Fault(e);
           }
-          pointer[0] = Stream.add(writingPipe);
-          pointer[1] = Stream.add(readingPipe);
         }
-        public int getPointer(int number) {
-          return pointer[number];
+
+        @Override
+        public void close() throws IOException {
+          writingPipe.close();
+          readingPipe.close();
         }
-      }
-      public static class WritingPipe extends PipedOutputStream {
-        public WritingPipe(){}
-      }
-      public static class ReadingPipe extends PipedInputStream {
-        public ReadingPipe(WritingPipe d) throws IOException {super(d);}
+
+        public static class WritingPipe extends PipedOutputStream {
+          public WritingPipe() {}
+        }
+
+        public static class ReadingPipe extends PipedInputStream {
+          public ReadingPipe(WritingPipe d) throws IOException {super(d);}
+        }
       }
     }
-  }
 
-  public static class Compression { private Compression(){}
+    public static class Compression {
+      private Compression() {}
 
-    public static class Zip { private Zip(){}
+      public static class Zip {
+        private Zip() {}
 
-      public Integer startZipOutputStream(Integer outputstream) {
-        Object stream = get(outputstream);
-        if (Plus.classMember(stream, WRITING_STREAM)) try {
-          GZIPOutputStream gz = new GZIPOutputStream(valueOf(stream));
-          return add(gz);
-        } catch (Exception e) { throw new Fault(e); }
-        throw new Fault.WrongStreamType(stream.getClass().getName());
-      }
-
-      public void endZipOutputStream(Integer pointer) {
-        Object stream = get(pointer);
-        if (Plus.classMember(stream, GZIPOutputStream.class)) {
-          GZIPOutputStream gz = valueOf(stream);
-          try {
-            gz.finish();
-            return;
+        public Integer startZipOutputStream(Integer outputstream) {
+          Object stream = get(outputstream);
+          if (Plus.classMember(stream, WRITING_STREAM)) try {
+            GZIPOutputStream gz = new GZIPOutputStream(valueOf(stream));
+            return add(gz);
           } catch (Exception e) { throw new Fault(e); }
+          throw new Fault.WrongStreamType(stream.getClass().getName());
         }
-        throw new Fault.WrongStreamType(stream.getClass().getName());
+
+        public void endZipOutputStream(Integer pointer) {
+          Object stream = get(pointer);
+          if (Plus.classMember(stream, GZIPOutputStream.class)) {
+            GZIPOutputStream gz = valueOf(stream);
+            try {
+              gz.finish();
+              return;
+            } catch (Exception e) { throw new Fault(e); }
+          }
+          throw new Fault.WrongStreamType(stream.getClass().getName());
+        }
+
+        public Integer getZipInputStream(Integer inputstream) {
+          Object stream = get(inputstream);
+          if (Plus.classMember(stream, READING_STREAM)) try {
+            GZIPInputStream gz = new GZIPInputStream(valueOf(stream));
+            return add(gz);
+          } catch (Exception e) { throw new Fault(e); }
+          throw new Fault.WrongStreamType(stream.getClass().getName());
+        }
       }
 
-      public Integer getZipInputStream(Integer inputstream) {
-        Object stream = get(inputstream);
-        if (Plus.classMember(stream, READING_STREAM)) try {
-          GZIPInputStream gz = new GZIPInputStream(valueOf(stream));
-          return add(gz);
-        } catch (Exception e) { throw new Fault(e); }
-        throw new Fault.WrongStreamType(stream.getClass().getName());
-      }
     }
-
   }
 }
