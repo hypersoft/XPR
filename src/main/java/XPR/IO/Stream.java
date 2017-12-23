@@ -2,6 +2,7 @@ package XPR.IO;
 
 import XPR.DeadBug;
 import XPR.Fault;
+import XPR.IO.Network.Socket;
 import XPR.Kiosk;
 import XPR.Plus;
 
@@ -83,7 +84,7 @@ public class Stream {
   }
 
   public static String getType(Integer pointer) {
-    return streamKiosk.get(pointer).getClass().getSimpleName();
+    return streamKiosk.get(pointer).getClass().getName();
   }
 
   public static int getReadingStreamQueLength(Integer pointer) {
@@ -92,6 +93,12 @@ public class Stream {
       try { return ((InputStream) stream).available(); } catch (Exception e) {
         throw new Fault(e);
       }
+    }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      try {
+        return socket.getInputStream().available();
+      } catch (IOException e) { throw new Fault(e); }
     }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
@@ -103,6 +110,11 @@ public class Stream {
       source.mark(readlimit);
       return;
     } catch (Exception e) { throw new Fault(e); }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      socket.getInputStream().mark(readlimit);
+      return;
+    }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
@@ -113,6 +125,13 @@ public class Stream {
       source.reset();
       return;
     } catch (IOException e) { throw new Fault(e); }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      try {
+        socket.getInputStream().reset();
+        return;
+      } catch (IOException e) { throw new Fault(e); }
+    }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
@@ -121,6 +140,10 @@ public class Stream {
     if (Plus.classMember(stream, READING_STREAM)) {
       InputStream source = valueOf(stream);
       return source.markSupported();
+    }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      return socket.getInputStream().markSupported();
     }
     return false;
   }
@@ -150,6 +173,10 @@ public class Stream {
       Pipes.Real.Pipe pipe = valueOf(stream);
       return pipe.source.read(ByteBuffer.wrap(Buffer.get(in)));
     }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      return socket.getInputStream().read(Buffer.get(in));
+    }
     throw new Fault.WrongStreamType(stream.getClass().getName());
   }
 
@@ -176,6 +203,13 @@ public class Stream {
       } catch (IOException e) {
         e.printStackTrace();
       }
+      return;
+    }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      try {
+        socket.getOutputStream().flush();
+      } catch (IOException e) { throw new Fault(e); }
       return;
     }
     throw new Fault.WrongStreamType(stream.getClass().getName());
@@ -211,6 +245,11 @@ public class Stream {
     if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
       Pipes.Synthetic.Pipe pipe = valueOf(stream);
       pipe.writingPipe.write(Buffer.get(out));
+      return;
+    }
+    if (Plus.classMember(stream, Socket.class)) {
+      Socket socket = valueOf(stream);
+      socket.getOutputStream().write(Buffer.get(out));
       return;
     }
     throw new Fault.WrongStreamType(stream.getClass().getName());

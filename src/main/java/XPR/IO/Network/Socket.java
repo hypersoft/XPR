@@ -13,35 +13,31 @@ import java.net.UnknownHostException;
 
 public class Socket extends java.net.Socket {
 
-  private int reader, writer, self;
+  InputStream oreader; OutputStream owriter;
+
+  int openSocket(String host, int port) {
+    Socket socket;
+    try {
+      socket = new Socket(host, port);
+      return Stream.add(socket);
+    } catch (IOException e) { throw new Fault(e); }
+  }
 
   private void onConnect() {
-    InputStream oreader; OutputStream owriter;
     try {
       oreader = super.getInputStream();
       owriter = super.getOutputStream();
     } catch (IOException e) { throw new Fault(e); }
-    self = Stream.add(this);
-    reader = Stream.add(oreader);
-    writer = Stream.add(owriter);
   }
 
   @Override
   public InputStream getInputStream() {
-    return Stream.get(reader);
+    return oreader;
   }
 
   @Override
   public OutputStream getOutputStream() {
-    return Stream.get(writer);
-  }
-
-  public int getReader() {
-    return reader;
-  }
-
-  public int getWriter() {
-    return writer;
+    return owriter;
   }
 
   public Socket(String host, int port) throws UnknownHostException, IOException
