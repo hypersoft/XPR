@@ -20,7 +20,11 @@ public class Stream {
     WRITING_STREAM = OutputStream.class,
     RECORD_STREAM = RandomAccessFile.class,
     DATA_STREAM_OUT = DataOutputStream.class,
-    DATA_STREAM_IN = DataInputStream.class;
+    DATA_STREAM_IN = DataInputStream.class,
+    SOCKET_STREAM = XPR.IO.Network.Socket.class,
+    SYNTHETIC_PIPE = XPR.IO.Stream.Pipes.Synthetic.Pipe.class,
+    REAL_PIPE = XPR.IO.Stream.Pipes.Real.Pipe.class;
+  
 
   final static Class[] streamType = new Class[]{
     Closeable.class,        // 0 
@@ -29,6 +33,9 @@ public class Stream {
     RECORD_STREAM,          // 3
     DATA_STREAM_OUT,        // 4
     DATA_STREAM_IN,         // 5
+    SOCKET_STREAM,          // 6
+    SYNTHETIC_PIPE,         // 7
+    REAL_PIPE               // 8
   };
 
 
@@ -94,7 +101,7 @@ public class Stream {
         throw new Fault(e);
       }
     }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       try {
         return socket.getInputStream().available();
@@ -110,7 +117,7 @@ public class Stream {
       source.mark(readlimit);
       return;
     } catch (Exception e) { throw new Fault(e); }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       socket.getInputStream().mark(readlimit);
       return;
@@ -125,7 +132,7 @@ public class Stream {
       source.reset();
       return;
     } catch (IOException e) { throw new Fault(e); }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       try {
         socket.getInputStream().reset();
@@ -141,7 +148,7 @@ public class Stream {
       InputStream source = valueOf(stream);
       return source.markSupported();
     }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       return socket.getInputStream().markSupported();
     }
@@ -165,15 +172,15 @@ public class Stream {
       DataInputStream database = valueOf(stream);
       return database.read(Buffer.get(in));
     }
-    if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
+    if (Plus.classMember(stream, SYNTHETIC_PIPE)) {
       Pipes.Synthetic.Pipe pipe = valueOf(stream);
       return pipe.readingPipe.read(Buffer.get(in));
     }
-    if (Plus.classMember(stream, Pipes.Real.Pipe.class)) {
+    if (Plus.classMember(stream, REAL_PIPE)) {
       Pipes.Real.Pipe pipe = valueOf(stream);
       return pipe.source.read(ByteBuffer.wrap(Buffer.get(in)));
     }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       return socket.getInputStream().read(Buffer.get(in));
     }
@@ -192,11 +199,11 @@ public class Stream {
       }
       return;
     }
-    if (Plus.classMember(stream, Pipes.Real.Pipe.class)) {
+    if (Plus.classMember(stream, REAL_PIPE)) {
       Pipes.Real.Pipe pipe = valueOf(stream);
       return;
     }
-    if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
+    if (Plus.classMember(stream, SYNTHETIC_PIPE)) {
       Pipes.Synthetic.Pipe pipe = valueOf(stream);
       try {
         pipe.writingPipe.flush();
@@ -205,7 +212,7 @@ public class Stream {
       }
       return;
     }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       try {
         socket.getOutputStream().flush();
@@ -237,17 +244,17 @@ public class Stream {
       if (flush) dest.flush();
       return;
     }
-    if (Plus.classMember(stream, Pipes.Real.Pipe.class)) {
+    if (Plus.classMember(stream, REAL_PIPE)) {
       Pipes.Real.Pipe pipe = valueOf(stream);
       pipe.out.write(ByteBuffer.wrap(Buffer.get(out)));
       return;
     }
-    if (Plus.classMember(stream, Pipes.Synthetic.Pipe.class)) {
+    if (Plus.classMember(stream, SYNTHETIC_PIPE)) {
       Pipes.Synthetic.Pipe pipe = valueOf(stream);
       pipe.writingPipe.write(Buffer.get(out));
       return;
     }
-    if (Plus.classMember(stream, Socket.class)) {
+    if (Plus.classMember(stream, SOCKET_STREAM)) {
       Socket socket = valueOf(stream);
       socket.getOutputStream().write(Buffer.get(out));
       return;
